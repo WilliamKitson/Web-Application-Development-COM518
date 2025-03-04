@@ -4,7 +4,6 @@ import Database from 'better-sqlite3';
 const app = express();
 const database = new Database('pointsofinterest.db');
 
-app.use(express.static('public'));
 app.use(express.json());
 
 app.get('/pointsofinterest/:region', (req, res) => {
@@ -12,6 +11,7 @@ app.get('/pointsofinterest/:region', (req, res) => {
         const stmt = database.prepare("SELECT * FROM pointsofinterest WHERE region=?");
         const results = stmt.all(req.params.region);
         res.json(results);
+
     } catch(error) {
         res.status(500).json({ error: error });
     }
@@ -45,9 +45,25 @@ app.post('/pointsofinterest/create', (req, res) => {
             description,
             recommendations
         ));
+
     } catch(error) {
         console.log(error);
         res.status(500).json({ error: error });
+    }
+});
+
+app.put('/pointsofinterest/recommend/:id', (req, res) =>{
+    try {
+        const stmt = database.prepare(
+            "UPDATE pointsofinterest" +
+            "SET recommendations = recommendations + 1" +
+            "WHERE id = ?"
+        );
+
+        res.json(stmt.run(req.params.id));
+
+    } catch(error) {
+        res.status(500).json({error: error});
     }
 });
 
