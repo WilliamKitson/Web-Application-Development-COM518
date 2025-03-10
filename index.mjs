@@ -4,7 +4,12 @@ import Database from 'better-sqlite3';
 const app = express();
 const database = new Database('pointsofinterest.db');
 
+app.use(express.static('public'));
 app.use(express.json());
+
+app.get('/', (req,res)=> {
+    res.redirect("/frontend.html")
+});
 
 app.get('/pointsofinterest/:region', (req, res) => {
     try {
