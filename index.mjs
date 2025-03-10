@@ -63,8 +63,7 @@ app.put('/pointsofinterest/recommend/:id', (req, res) =>{
         res.json(stmt.run(req.params.id));
 
     } catch(error) {
-        throw error;
-     //   res.status(500).json({error: error});
+        res.status(500).json({error: error});
     }
 });
 
