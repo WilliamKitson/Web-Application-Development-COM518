@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 app.get('/', (req,res)=> {
-    res.redirect("/frontend.html")
+    res.redirect("/index.html")
 });
 
 app.get('/pointsofinterest/:region', (req, res) => {
