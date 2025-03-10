@@ -55,15 +55,16 @@ app.post('/pointsofinterest/create', (req, res) => {
 app.put('/pointsofinterest/recommend/:id', (req, res) =>{
     try {
         const stmt = database.prepare(
-            "UPDATE pointsofinterest" +
-            "SET recommendations = recommendations + 1" +
+            "UPDATE pointsofinterest " +
+            "SET recommendations = recommendations + 1 " +
             "WHERE id = ?"
         );
 
         res.json(stmt.run(req.params.id));
 
     } catch(error) {
-        res.status(500).json({error: error});
+        throw error;
+     //   res.status(500).json({error: error});
     }
 });
 
