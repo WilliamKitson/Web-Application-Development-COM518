@@ -11,6 +11,8 @@
     "better-sqlite3": "^11.8.1",
     "express": "^4.21.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "vite": "^6.2.1",
+    "vite-express": "^0.20.0"
   }
 }

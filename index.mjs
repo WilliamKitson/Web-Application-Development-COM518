@@ -1,4 +1,5 @@
 import express from 'express';
+import ViteExpress from 'vite-express';
 import Database from 'better-sqlite3';
 
 const app = express();
@@ -71,4 +72,4 @@ app.put('/pointsofinterest/recommend/:id', (req, res) =>{
     }
 });
 
-app.listen(3000);
+ViteExpress.listen(app, 3000, () => "Express server with Vite integration now running...");
