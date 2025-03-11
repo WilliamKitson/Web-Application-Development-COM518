@@ -14,7 +14,12 @@ app.get('/', (req,res)=> {
 
 app.get('/pointsofinterest/:region', (req, res) => {
     try {
-        const stmt = database.prepare("SELECT * FROM pointsofinterest WHERE region=?");
+        const stmt = database.prepare("" +
+            "SELECT * " +
+            "FROM pointsofinterest " +
+            "WHERE region=?"
+        );
+
         const results = stmt.all(req.params.region);
         res.json(results);
 

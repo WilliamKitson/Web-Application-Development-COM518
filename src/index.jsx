@@ -7,5 +7,17 @@ root.render(
         <div>
             Hello World from React!
         </div>
+        <div>
+            <br/>
+            <label>
+                Region
+                <input id='region' type='text' />
+            </label>
+            <button id='searchRegion'>
+                Search
+            </button>
+            <br/>
+            <div id='results'></div>
+        </div>
     </Fragment>
 );
