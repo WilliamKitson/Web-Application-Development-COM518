@@ -6,13 +6,13 @@ function SearchRegion() {
             <div>
                 <label>
                     Region
-                    <input id="region" type="text" />
+                    <input id={"region"} type={"text"} />
                 </label>
                 <button onClick={searchRegion}>
                     Search
                 </button>
                 <br/>
-                <div id="results"></div>
+                <div id={"results"}></div>
             </div>
         </Fragment>
     )
