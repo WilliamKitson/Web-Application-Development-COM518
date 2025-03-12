@@ -20,7 +20,7 @@ function SearchRegion() {
     async function getRegions() {
         try {
             const response = await fetch("http://localhost:3000/pointsofinterest/regions");
-            buildRegions(await response.json())
+            buildRegions(await response.json());
 
         } catch(e) {
             alert(e);
@@ -28,13 +28,14 @@ function SearchRegion() {
     }
 
     function buildRegions(regions) {
-        document.getElementById("region").innerHTML = regions;
+        const regionInput = document.getElementById("region");
+        regionInput.innerHTML = regions;
 
         for (const region of regions) {
-            const option = document.createElement("option")
+            const option = document.createElement("option");
             option.innerHTML = region.region;
 
-            document.getElementById("region").appendChild(option)
+            regionInput.appendChild(option);
         }
     }
 
@@ -50,8 +51,8 @@ function SearchRegion() {
     }
 
     function buildResults(regions) {
-        const results = document.getElementById("results")
-        results.innerHTML = ""
+        const results = document.getElementById("results");
+        results.innerHTML = "";
 
         for (const region of regions) {
             const paragraph = document.createElement("p");
