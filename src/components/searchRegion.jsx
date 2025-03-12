@@ -50,14 +50,15 @@ function SearchRegion() {
     }
 
     function buildResults(regions) {
-        document.getElementById("results").innerHTML = ""
+        const results = document.getElementById("results")
+        results.innerHTML = ""
 
         for (const region of regions) {
             const paragraph = document.createElement("p");
             const paragraphText = document.createTextNode(region.name);
 
             paragraph.appendChild(paragraphText);
-            document.getElementById("results").appendChild(paragraph);
+            results.appendChild(paragraph);
         }
     }
 }
