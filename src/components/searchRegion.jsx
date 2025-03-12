@@ -6,7 +6,11 @@ function SearchRegion() {
             <div>
                 <label>
                     Region
-                    <select id={"region"} onClick={getRegions}></select>
+                    <select id={"region"} onClick={getRegions}>
+                        <option>
+                            No Region
+                        </option>
+                    </select>
                 </label>
                 <button onClick={searchRegion}>
                     Search
