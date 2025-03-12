@@ -23,6 +23,8 @@ function SearchRegion() {
             const response = await fetch(`http://localhost:3000/pointsofinterest/${regionInput}`);
             const regions = await response.json();
 
+            document.getElementById("results").innerHTML = ""
+
             for (const region of regions) {
                 const paragraph = document.createElement("p");
                 const paragraphText = document.createTextNode(region.name);
