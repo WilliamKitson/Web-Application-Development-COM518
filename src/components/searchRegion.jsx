@@ -3,15 +3,17 @@ import React, {Fragment} from "react";
 function SearchRegion() {
     return (
         <Fragment>
-            <label>
-                Region
-                <select id={"region"} onClick={getRegions}></select>
-            </label>
-            <button onClick={searchRegion}>
-                Search
-            </button>
-            <br/>
-            <div id={"results"}></div>
+            <div>
+                <label>
+                    Region
+                    <select id={"region"} onClick={getRegions}></select>
+                </label>
+                <button onClick={searchRegion}>
+                    Search
+                </button>
+                <br/>
+                <div id={"results"}></div>
+            </div>
         </Fragment>
     )
 
