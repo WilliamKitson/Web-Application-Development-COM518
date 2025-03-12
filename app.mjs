@@ -14,7 +14,7 @@ app.get("/", (req,res)=> {
 
 app.get("/pointsofinterest/:region", (req, res) => {
     try {
-        const stmt = database.prepare("" +
+        const stmt = database.prepare(
             "SELECT * " +
             "FROM pointsofinterest " +
             "WHERE region=?"
