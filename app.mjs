@@ -12,6 +12,20 @@ app.get("/", (req,res)=> {
     res.redirect("/index.html")
 });
 
+app.get("/pointsofinterest/regions", (req, res) => {
+    try {
+        const stmt = database.prepare(
+            "SELECT DISTINCT region " +
+            "FROM pointsofinterest"
+        );
+
+        res.json(stmt.all());
+
+    } catch(error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 app.get("/pointsofinterest/:region", (req, res) => {
     try {
         const stmt = database.prepare(
