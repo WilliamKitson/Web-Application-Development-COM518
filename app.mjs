@@ -1,18 +1,18 @@
-import express from 'express';
-import ViteExpress from 'vite-express';
-import Database from 'better-sqlite3';
+import express from "express";
+import ViteExpress from "vite-express";
+import Database from "better-sqlite3";
 
 const app = express();
-const database = new Database('pointsofinterest.db');
+const database = new Database("pointsofinterest.db");
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.json());
 
-app.get('/', (req,res)=> {
+app.get("/", (req,res)=> {
     res.redirect("/index.html")
 });
 
-app.get('/pointsofinterest/:region', (req, res) => {
+app.get("/pointsofinterest/:region", (req, res) => {
     try {
         const stmt = database.prepare("" +
             "SELECT * " +
@@ -28,7 +28,7 @@ app.get('/pointsofinterest/:region', (req, res) => {
     }
 });
 
-app.post('/pointsofinterest/create', (req, res) => {
+app.post("/pointsofinterest/create", (req, res) => {
     const {
         name,
         type,
@@ -62,7 +62,7 @@ app.post('/pointsofinterest/create', (req, res) => {
     }
 });
 
-app.put('/pointsofinterest/recommend/:id', (req, res) =>{
+app.put("/pointsofinterest/recommend/:id", (req, res) =>{
     try {
         const stmt = database.prepare(
             "UPDATE pointsofinterest " +
