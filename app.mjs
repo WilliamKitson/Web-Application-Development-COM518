@@ -77,4 +77,4 @@ app.put("/pointsofinterest/recommend/:id", (req, res) =>{
     }
 });
 
-ViteExpress.listen(app, 3000, () => "Express server with Vite integration now running...");
+ViteExpress.listen(app, 3000);
