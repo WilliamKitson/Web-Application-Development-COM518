@@ -1,6 +1,52 @@
 import React, {Fragment} from "react";
 
 function PointsOfInterest() {
+    const points = [
+        {
+            name: "1",
+            type: "1",
+            country: "1",
+            latitude: 1.0,
+            longitude: 1.0,
+            description: "1",
+            recommendations: 1
+        },
+        {
+            name: "2",
+            type: "2",
+            country: "2",
+            latitude: 2.0,
+            longitude: 2.0,
+            description: "2",
+            recommendations: 2
+        }
+    ];
+
+    const pointsList = points.map(point =>
+        <tr>
+            <td>
+                {point.name}
+            </td>
+            <td>
+                {point.type}
+            </td>
+            <td>
+                {point.country}
+            </td>
+            <td>
+                Lat: {point.latitude}, Lon: {point.longitude}
+            </td>
+            <td>
+                {point.description}
+            </td>
+            <td>
+                <button onClick={recommend}>
+                    {point.recommendations}
+                </button>
+            </td>
+        </tr>
+    );
+
     return (
         <Fragment>
             <table>
@@ -27,28 +73,7 @@ function PointsOfInterest() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            Name
-                        </td>
-                        <td>
-                            Type
-                        </td>
-                        <td>
-                            Country
-                        </td>
-                        <td>
-                            Coordinates
-                        </td>
-                        <td>
-                            Description
-                        </td>
-                        <td>
-                            <button onClick={recommend}>
-                                Recommendations
-                            </button>
-                        </td>
-                    </tr>
+                    {pointsList}
                 </tbody>
             </table>
         </Fragment>
