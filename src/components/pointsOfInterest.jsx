@@ -1,8 +1,6 @@
 import React, {Fragment} from "react";
 
 function PointsOfInterest(props) {
-    getPointsOfInterest(props.region)
-
     return (
         <Fragment>
             <table>
@@ -81,19 +79,6 @@ function PointsOfInterest(props) {
                 </td>
             </tr>
         );
-    }
-
-    async function getPointsOfInterest(region) {
-        try {
-            const response = await fetch(`http://localhost:3000/pointsofinterest/${region}`);
-
-            for (const i in await response.json()) {
-                alert(i.name)
-            }
-
-        } catch(e) {
-            alert(e);
-        }
     }
 
     function recommend() {
