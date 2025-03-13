@@ -44,7 +44,7 @@ function PointsOfInterest() {
                             Description
                         </td>
                         <td>
-                            <button>
+                            <button onClick={recommend}>
                                 Recommendations
                             </button>
                         </td>
@@ -53,6 +53,10 @@ function PointsOfInterest() {
             </table>
         </Fragment>
     )
+
+    function recommend() {
+        alert("recommend");
+    }
 }
 
 export default PointsOfInterest;
