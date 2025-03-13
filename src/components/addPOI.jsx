@@ -5,47 +5,66 @@ function AddPOI() {
         <Fragment>
             <label>
                 Name
-                <input type={"text"} />
+                <input type={"text"} id={"name"} />
             </label>
             <br/>
             <label>
                 Type
-                <input type={"text"} />
+                <input type={"text"} id={"type"} />
             </label>
             <br/>
             <label>
                 Country
-                <input type={"text"} />
+                <input type={"text"} id={"country"} />
             </label>
             <br/>
             <label>
                 Region
-                <input type={"text"} />
+                <input type={"text"} id={"region"} />
             </label>
             <br/>
             <label>
                 Longitude
-                <input type={"number"} />
+                <input type={"number"} id={"longitude"} />
             </label>
             <br/>
             <label>
                 Latitude
-                <input type={"number"} />
+                <input type={"number"} id={"latitude"} />
             </label>
             <br/>
             <label>
                 Description
-                <input type={"text"} />
+                <input type={"text"} id={"description"} />
             </label>
             <br/>
-            <button onClick={savePOI}>
+            <button onClick={postPOI}>
                 Save
             </button>
         </Fragment>
     )
 
-    function savePOI() {
-        alert("Save POI")
+    async function postPOI() {
+        const POI = {
+            name: document.getElementById("name").value,
+            type: document.getElementById("type").value,
+            country: document.getElementById("country").value,
+            region: document.getElementById("region").value,
+            longitude: document.getElementById("longitude").value,
+            latitude: document.getElementById("latitude").value,
+            description: document.getElementById("description").value,
+        }
+
+        try {
+            await fetch("/pointsofinterest/create", {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify(POI)
+            });
+
+        } catch (error) {
+            alert(error);
+        }
     }
 }
 
