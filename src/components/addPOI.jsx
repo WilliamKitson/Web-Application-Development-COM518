@@ -45,21 +45,19 @@ function AddPOI() {
     )
 
     async function postPOI() {
-        const POI = {
-            name: document.getElementById("name").value,
-            type: document.getElementById("type").value,
-            country: document.getElementById("country").value,
-            region: document.getElementById("region").value,
-            longitude: document.getElementById("longitude").value,
-            latitude: document.getElementById("latitude").value,
-            description: document.getElementById("description").value,
-        }
-
         try {
             await fetch("/pointsofinterest/create", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify(POI)
+                body: JSON.stringify({
+                    name: document.getElementById("name").value,
+                    type: document.getElementById("type").value,
+                    country: document.getElementById("country").value,
+                    region: document.getElementById("region").value,
+                    longitude: document.getElementById("longitude").value,
+                    latitude: document.getElementById("latitude").value,
+                    description: document.getElementById("description").value
+                })
             });
 
         } catch (error) {
