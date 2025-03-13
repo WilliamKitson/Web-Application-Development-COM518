@@ -37,8 +37,16 @@ function AddPOI() {
                 Description
                 <input type={"text"} />
             </label>
+            <br/>
+            <button onClick={savePOI}>
+                Save
+            </button>
         </Fragment>
     )
+
+    function savePOI() {
+        alert("Save POI")
+    }
 }
 
 export default AddPOI
