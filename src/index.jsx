@@ -9,7 +9,7 @@ root.render(
         <div>
             Hello World from React!
             <SearchRegion/>
-            <PointsOfInterest/>
+            <PointsOfInterest region={"Southampton"}/>
         </div>
     </Fragment>
 );
