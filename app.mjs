@@ -50,14 +50,13 @@ app.post("/pointsofinterest/create", (req, res) => {
         region,
         lat,
         lon,
-        description,
-        recommendations
+        description
     } = req.body;
 
     try {
         const stmt = database.prepare(
             "INSERT INTO pointsofinterest(name, type, country, region, lat, lon, description, recommendations) " +
-            "VALUES(?,?,?,?,?,?,?,?)"
+            "VALUES(?,?,?,?,?,?,?,0)"
         );
 
         res.json(stmt.run(
@@ -67,8 +66,7 @@ app.post("/pointsofinterest/create", (req, res) => {
             region,
             lat,
             lon,
-            description,
-            recommendations
+            description
         ));
 
     } catch(error) {
