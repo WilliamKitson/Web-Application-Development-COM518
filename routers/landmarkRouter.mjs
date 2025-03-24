@@ -1,5 +1,5 @@
 import express from 'express';
-import databaseModule from "./databaseModule.mjs";
+import databaseModule from "../databaseModule.mjs";
 
 const landmarkRouter = express.Router();
 landmarkRouter.use(express.json());
