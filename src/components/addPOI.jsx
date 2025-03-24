@@ -46,7 +46,7 @@ function AddPOI() {
 
     async function postPOI() {
         try {
-            await fetch("/pointsofinterest/create", {
+            await fetch("/landmark/create", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify({

@@ -23,7 +23,7 @@ function SearchRegion() {
 
     async function getRegions() {
         try {
-            const response = await fetch("http://localhost:3000/pointsofinterest/regions");
+            const response = await fetch("http://localhost:3000/landmark/regions");
             buildRegions(await response.json());
 
         } catch(e) {
@@ -46,7 +46,7 @@ function SearchRegion() {
     async function searchRegion() {
         try {
             const regionInput = document.getElementById("region").value;
-            const response = await fetch(`http://localhost:3000/pointsofinterest/${regionInput}`);
+            const response = await fetch(`http://localhost:3000/landmark/${regionInput}`);
             buildResults(await response.json());
 
         } catch(e) {

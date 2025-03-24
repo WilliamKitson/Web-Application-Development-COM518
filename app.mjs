@@ -5,7 +5,7 @@ import landmarkRouter from "./routers/landmarkRouter.mjs";
 const app = express();
 
 app.use(express.static("public"));
-app.use("/pointsofinterest", landmarkRouter)
+app.use("/landmark", landmarkRouter)
 
 app.get("/", (req,res)=> {
     res.redirect("/index.html")
