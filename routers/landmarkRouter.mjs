@@ -56,6 +56,11 @@ landmarkRouter.post("/create", (req, res) => {
         return;
     }
 
+    if (!type) {
+        res.status(400).json({ error: "no type supplied" });
+        return;
+    }
+
     try {
         const stmt = databaseModule.prepare(
             "INSERT INTO pointsofinterest(name, type, country, region, lat, lon, description, recommendations) " +
