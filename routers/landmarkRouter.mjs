@@ -71,8 +71,10 @@ landmarkRouter.post("/create", (req, res) => {
         return;
     }
 
-    if (!lat) {
-        res.status(400).json({ error: "no latitude supplied" });
+    // TODO LAT, LON
+
+    if (!description) {
+        res.status(400).json({ error: "no description supplied" });
         return;
     }
 
