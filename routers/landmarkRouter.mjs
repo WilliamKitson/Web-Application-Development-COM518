@@ -66,6 +66,11 @@ landmarkRouter.post("/create", (req, res) => {
         return;
     }
 
+    if (!region) {
+        res.status(400).json({ error: "no region supplied" });
+        return;
+    }
+
     try {
         const stmt = databaseModule.prepare(
             "INSERT INTO pointsofinterest(name, type, country, region, lat, lon, description, recommendations) " +
