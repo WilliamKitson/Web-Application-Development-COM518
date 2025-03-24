@@ -1,14 +1,12 @@
 import express from 'express';
-import Database from "better-sqlite3";
+import databaseModule from "./databaseModule.mjs";
 
 const landmarkRouter = express.Router();
-const database = new Database("./pointsofinterest.db");
-
 landmarkRouter.use(express.json());
 
 landmarkRouter.get("/regions", (req, res) => {
     try {
-        const stmt = database.prepare(
+        const stmt = databaseModule.prepare(
             "SELECT DISTINCT region " +
             "FROM pointsofinterest"
         );
@@ -22,7 +20,7 @@ landmarkRouter.get("/regions", (req, res) => {
 
 landmarkRouter.get("/:region", (req, res) => {
     try {
-        const stmt = database.prepare(
+        const stmt = databaseModule.prepare(
             "SELECT * " +
             "FROM pointsofinterest " +
             "WHERE region=?"
@@ -48,7 +46,7 @@ landmarkRouter.post("/create", (req, res) => {
     } = req.body;
 
     try {
-        const stmt = database.prepare(
+        const stmt = databaseModule.prepare(
             "INSERT INTO pointsofinterest(name, type, country, region, lat, lon, description, recommendations) " +
             "VALUES(?,?,?,?,?,?,?,0)"
         );
@@ -70,7 +68,7 @@ landmarkRouter.post("/create", (req, res) => {
 
 landmarkRouter.put("/recommend/:id", (req, res) =>{
     try {
-        const stmt = database.prepare(
+        const stmt = databaseModule.prepare(
             "UPDATE pointsofinterest " +
             "SET recommendations = recommendations + 1 " +
             "WHERE id = ?"
