@@ -4,6 +4,8 @@ import Database from "better-sqlite3";
 const landmarkRouter = express.Router();
 const database = new Database("./pointsofinterest.db");
 
+landmarkRouter.use(express.json());
+
 landmarkRouter.get("/regions", (req, res) => {
     try {
         const stmt = database.prepare(
