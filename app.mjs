@@ -1,92 +1,15 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import Database from "better-sqlite3";
+import landmarkRouter from "./landmarkRouter.mjs";
 
 const app = express();
-const database = new Database("pointsofinterest.db");
 
 app.use(express.static("public"));
 app.use(express.json());
+app.use("/pointsofinterest", landmarkRouter)
 
 app.get("/", (req,res)=> {
     res.redirect("/index.html")
-});
-
-app.get("/pointsofinterest/regions", (req, res) => {
-    try {
-        const stmt = database.prepare(
-            "SELECT DISTINCT region " +
-            "FROM pointsofinterest"
-        );
-
-        res.json(stmt.all());
-
-    } catch(error) {
-        res.status(500).json({ error: error });
-    }
-});
-
-app.get("/pointsofinterest/:region", (req, res) => {
-    try {
-        const stmt = database.prepare(
-            "SELECT * " +
-            "FROM pointsofinterest " +
-            "WHERE region=?"
-        );
-
-        const results = stmt.all(req.params.region);
-        res.json(results);
-
-    } catch(error) {
-        res.status(500).json({ error: error });
-    }
-});
-
-app.post("/pointsofinterest/create", (req, res) => {
-    const {
-        name,
-        type,
-        country,
-        region,
-        lat,
-        lon,
-        description
-    } = req.body;
-
-    try {
-        const stmt = database.prepare(
-            "INSERT INTO pointsofinterest(name, type, country, region, lat, lon, description, recommendations) " +
-            "VALUES(?,?,?,?,?,?,?,0)"
-        );
-
-        res.json(stmt.run(
-            name,
-            type,
-            country,
-            region,
-            lat,
-            lon,
-            description
-        ));
-
-    } catch(error) {
-        res.status(500).json({ error: error });
-    }
-});
-
-app.put("/pointsofinterest/recommend/:id", (req, res) =>{
-    try {
-        const stmt = database.prepare(
-            "UPDATE pointsofinterest " +
-            "SET recommendations = recommendations + 1 " +
-            "WHERE id = ?"
-        );
-
-        res.json(stmt.run(req.params.id));
-
-    } catch(error) {
-        res.status(500).json({error: error});
-    }
 });
 
 ViteExpress.listen(app, 3000);
