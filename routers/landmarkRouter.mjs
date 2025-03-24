@@ -74,7 +74,14 @@ landmarkRouter.put("/recommend/:id", (req, res) =>{
             "WHERE id = ?"
         );
 
-        res.json(stmt.run(req.params.id));
+        const info = stmt.run(req.params.id);
+
+        if(!info.changes) {
+            res.status(404).json({error: 'no point of interest with that ID'});
+            return;
+        }
+
+        res.json(info);
 
     } catch(error) {
         res.status(500).json({error: error});
