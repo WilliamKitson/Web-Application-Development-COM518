@@ -8,13 +8,37 @@ L.tileLayer
 ("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { attribution: attrib } ).addTo(map);
 
-const pos = [50.908,-1.4]
+map.setView(
+    [50.908,-1.4],
+    14
+);
 
-map.setView(pos, 14);
-L.marker(pos).addTo(map);
+const landmarks = [
+    {
+        name: "1",
+        type: "1",
+        country: "1",
+        latitude: 1.0,
+        longitude: 1.0,
+        description: "1",
+        recommendations: 1
+    },
+    {
+        name: "2",
+        type: "2",
+        country: "2",
+        latitude: 2.0,
+        longitude: 2.0,
+        description: "2",
+        recommendations: 2
+    }
+]
 
-map.on("click", function (event) {
-    const text = prompt("Who lives in a house like this?");
-    const marker = L.marker(event.latlng).addTo(map);
-    marker.bindPopup(`${text} (${event.latlng.lat}, ${event.latlng.lng})`);
+landmarks.forEach(landmark => {
+    const marker = L.marker([
+        landmark.latitude,
+        landmark.longitude
+    ]).addTo(map);
+
+    marker.bindPopup(`${landmark.name} (${landmark.latitude}, ${landmark.longitude})`);
 })
