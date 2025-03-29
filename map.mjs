@@ -18,9 +18,8 @@ loadLandmarks("Southampton")
 async function loadLandmarks(region) {
     try {
         const response = await fetch(`http://localhost:3000/landmark/${region}`);
-        const landmarks = await response.json();
 
-        for (const landmark of landmarks) {
+        for (const landmark of await response.json()) {
             const marker = L.marker([
                 landmark.lat,
                 landmark.lon
