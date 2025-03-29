@@ -27,14 +27,14 @@ function PointsOfInterest(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {tableBody()}
+                    {tableBody(props.region)}
                 </tbody>
             </table>
         </Fragment>
     )
 
-    function tableBody() {
-        loadLandmarks("Southampton")
+    function tableBody(region) {
+        loadLandmarks(region)
 
         const points = [
             {
