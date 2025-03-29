@@ -8,7 +8,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Fragment>
         <div>
-            Hello World from React!
             <SearchRegion/>
             <PointsOfInterest region={"Southampton"}/>
             <AddPOI/>
