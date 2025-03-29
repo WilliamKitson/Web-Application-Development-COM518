@@ -32,3 +32,9 @@ async function loadLandmarks(region) {
         alert(`There was an error: ${e}`);
     }
 }
+
+map.on("click", function (event) {
+    const text = prompt("Who lives in a house like this?");
+    const marker = L.marker(event.latlng).addTo(map);
+    marker.bindPopup(`${text} (${event.latlng.lat}, ${event.latlng.lng})`);
+})
