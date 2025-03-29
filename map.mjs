@@ -25,7 +25,7 @@ async function loadLandmarks(region) {
                 landmark.lon
             ]).addTo(map);
 
-            marker.bindPopup(`${landmark.name} (${landmark.lat}, ${landmark.lon})`);
+            marker.bindPopup(`${landmark.name} ${landmark.description}`);
         }
 
     } catch (e) {
