@@ -34,6 +34,8 @@ function PointsOfInterest(props) {
     )
 
     function tableBody() {
+        loadLandmarks("Southampton")
+
         const points = [
             {
                 name: "1",
@@ -83,6 +85,19 @@ function PointsOfInterest(props) {
 
     function recommend() {
         alert("recommend");
+    }
+
+    async function loadLandmarks(region) {
+        try {
+            const response = await fetch(`http://localhost:3000/landmark/${region}`);
+
+            for (const landmark of await response.json()) {
+                alert(`${landmark.name} (${landmark.lat}, ${landmark.lon})`);
+            }
+
+        } catch (e) {
+            alert(`There was an error: ${e}`);
+        }
     }
 }
 
