@@ -21,40 +21,15 @@ async function loadLandmarks(region) {
         const landmarks = await response.json();
 
         for (const landmark of landmarks) {
-            alert(`Landmark ${landmark.name} (${landmark.lat}, ${landmark.lon})`);
+            const marker = L.marker([
+                landmark.lat,
+                landmark.lon
+            ]).addTo(map);
+
+            marker.bindPopup(`${landmark.name} (${landmark.lat}, ${landmark.lon})`);
         }
 
     } catch (e) {
         alert(`There was an error: ${e}`);
     }
 }
-
-const landmarks = [
-    {
-        name: "1",
-        type: "1",
-        country: "1",
-        latitude: 1.0,
-        longitude: 1.0,
-        description: "1",
-        recommendations: 1
-    },
-    {
-        name: "2",
-        type: "2",
-        country: "2",
-        latitude: 2.0,
-        longitude: 2.0,
-        description: "2",
-        recommendations: 2
-    }
-]
-
-landmarks.forEach(landmark => {
-    const marker = L.marker([
-        landmark.latitude,
-        landmark.longitude
-    ]).addTo(map);
-
-    marker.bindPopup(`${landmark.name} (${landmark.latitude}, ${landmark.longitude})`);
-})
