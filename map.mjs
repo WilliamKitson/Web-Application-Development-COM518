@@ -13,6 +13,22 @@ map.setView(
     14
 );
 
+loadLandmarks("Southampton")
+
+async function loadLandmarks(region) {
+    try {
+        const response = await fetch(`http://localhost:3000/landmark/${region}`);
+        const landmarks = await response.json();
+
+        for (const landmark of landmarks) {
+            alert(`Landmark ${landmark.name} (${landmark.lat}, ${landmark.lon})`);
+        }
+
+    } catch (e) {
+        alert(`There was an error: ${e}`);
+    }
+}
+
 const landmarks = [
     {
         name: "1",
