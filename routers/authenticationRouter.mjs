@@ -67,4 +67,9 @@ authenticationRouter.get('/user', (req, res) => {
     res.json({username: req.session.username || null} );
 });
 
+authenticationRouter.post('/logout', (req, res) => {
+    req.session = null;
+    res.json({loggedout: true});
+});
+
 export default authenticationRouter;
