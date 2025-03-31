@@ -63,4 +63,8 @@ authenticationRouter.post("/login", (req, res) => {
     }
 });
 
+authenticationRouter.get('/user', (req, res) => {
+    res.json({username: req.session.username || null} );
+});
+
 export default authenticationRouter;
