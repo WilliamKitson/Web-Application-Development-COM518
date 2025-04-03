@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 
 function LoginPage() {
     const user = getLoggedIn()
+    alert(user.data.username);
 
     if (user) {
         return (
