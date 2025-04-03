@@ -1,13 +1,28 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 
 function LoginPage() {
-    const user = getLoggedIn()
-    alert(user.data.username);
+    const [username, setUsername] = useState("");
 
-    if (user) {
+    useEffect(() => {
+        fetch("http://localhost:3000/authentication/user")
+            .then(response => {
+                if(response.status === 200){
+                    return response.json();
+                }
+                throw new Error('Unable to login');
+            })
+            .then(data => {
+                setUsername(data.username);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, []);
+
+    if (username) {
         return (
             <Fragment>
-                NAME is logged in!
+                {username} is logged in!
                 <br/>
                 <button onClick={logout}>
                     Logout
@@ -33,18 +48,6 @@ function LoginPage() {
             </button>
         </Fragment>
     )
-
-    async function getLoggedIn() {
-        try {
-            const response = await fetch("http://localhost:3000/authentication/user");
-            const data = await response.json();
-            alert(data.username);
-            return data.username;
-
-        } catch(e) {
-            alert(e);
-        }
-    }
 
     function login() {
         alert(`${document.getElementById("username").value} ${document.getElementById("password").value}`);
