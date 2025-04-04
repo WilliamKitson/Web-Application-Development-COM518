@@ -49,8 +49,22 @@ function LoginPage() {
         </Fragment>
     )
 
-    function login() {
-        alert(`${document.getElementById("username").value} ${document.getElementById("password").value}`);
+    async function login() {
+        alert(document.getElementById("username").value)
+
+        try {
+            await fetch("/authentication/login", {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify({
+                    username: document.getElementById("username").value,
+                    password: document.getElementById("password").value
+                })
+            });
+
+        } catch (error) {
+            alert(error);
+        }
     }
 
     function logout() {
