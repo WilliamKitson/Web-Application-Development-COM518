@@ -50,8 +50,6 @@ function LoginPage() {
     )
 
     async function login() {
-        alert(document.getElementById("username").value)
-
         try {
             await fetch("/authentication/login", {
                 method: "POST",
@@ -67,8 +65,16 @@ function LoginPage() {
         }
     }
 
-    function logout() {
-        alert("Logged out!")
+    async function logout() {
+        try {
+            await fetch("/authentication/logout", {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"}
+            });
+
+        } catch (error) {
+            alert(error);
+        }
     }
 }
 
