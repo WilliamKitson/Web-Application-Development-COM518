@@ -9,7 +9,7 @@ function LoginPage() {
                 if(response.status === 200){
                     return response.json();
                 }
-                throw new Error('Unable to login');
+                throw new Error("Unable to login");
             })
             .then(data => {
                 setUsername(data.username);
@@ -58,7 +58,18 @@ function LoginPage() {
                     username: document.getElementById("username").value,
                     password: document.getElementById("password").value
                 })
-            });
+            }).then(response => {
+                if(response.status === 200){
+                    return response.json();
+                }
+                throw new Error("Unable to login");
+            })
+                .then(data => {
+                    setUsername(data.username);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
 
         } catch (error) {
             alert(error);
@@ -71,6 +82,8 @@ function LoginPage() {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"}
             });
+
+            setUsername("");
 
         } catch (error) {
             alert(error);
