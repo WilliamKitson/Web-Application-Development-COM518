@@ -27,9 +27,12 @@ function RegionLandmarks() {
 
     return (
         <Fragment>
-            <select>
-                {regions}
-            </select>
+            <label>
+                Region
+                <select>
+                    {regions}
+                </select>
+            </label>
         </Fragment>
     )
 }
