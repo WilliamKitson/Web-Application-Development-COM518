@@ -2,6 +2,7 @@ import express from 'express';
 import Database from "better-sqlite3";
 import expressSession from 'express-session';
 import betterSqlite3Session from 'express-session-better-sqlite3';
+import bcrypt from 'bcrypt';
 import databaseModule from "../databaseModule.mjs";
 
 const authenticationRouter = express.Router();
@@ -23,6 +24,42 @@ authenticationRouter.use(expressSession({
         httpOnly: false
     }
 }));
+
+authenticationRouter.post("/register", (req, res) => {
+    const {
+        username,
+        password
+    } = req.body;
+
+    /*
+        if (!username) {
+        res.status(400).json({ error: "no username supplied" });
+        return;
+    }
+
+    if (!password) {
+        res.status(400).json({ error: "no password supplied" });
+        return;
+    }
+     */
+
+    try {
+        const stmt = databaseModule.prepare(
+            "INSERT INTO poi_users(username, password) " +
+            "VALUES(?,?)"
+        );
+
+        bcrypt.hash(password, 10, function(err, hash) {
+            res.json(stmt.run(
+                username,
+                hash
+            ));
+        });
+
+    } catch(error) {
+        res.status(500).json({ error: error });
+    }
+});
 
 authenticationRouter.post("/login", (req, res) => {
     const {
