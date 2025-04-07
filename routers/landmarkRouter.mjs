@@ -44,6 +44,11 @@ landmarkRouter.get("/regions", (req, res) => {
 });
 
 landmarkRouter.get("/:region", (req, res) => {
+    if (req.session.username == null) {
+        res.status(401).json({ error: "you are not logged in." });
+        return;
+    }
+
     try {
         const stmt = databaseModule.prepare(
             "SELECT * " +
