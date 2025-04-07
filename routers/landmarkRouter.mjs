@@ -66,7 +66,15 @@ landmarkRouter.get("/:region", (req, res) => {
         const info = stmt.all(xss(req.params.region));
 
         for (const i in info) {
+            info[i].id = xss(info[i].id);
+            info[i].name = xss(info[i].name);
+            info[i].type = xss(info[i].type);
+            info[i].country = xss(info[i].country);
             info[i].region = xss(info[i].region);
+            info[i].lon = xss(info[i].lon);
+            info[i].lat = xss(info[i].lat);
+            info[i].description = xss(info[i].description);
+            info[i].recommendations = xss(info[i].recommendations);
         }
 
         if (!info.length) {
