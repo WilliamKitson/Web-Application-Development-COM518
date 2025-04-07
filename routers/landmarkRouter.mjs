@@ -143,6 +143,11 @@ landmarkRouter.post("/create", (req, res) => {
 });
 
 landmarkRouter.put("/recommend/:id", (req, res) =>{
+    if (req.session.username == null) {
+        res.status(401).json({ error: "you are not logged in." });
+        return;
+    }
+
     try {
         const stmt = databaseModule.prepare(
             "UPDATE pointsofinterest " +
