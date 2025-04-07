@@ -1,6 +1,12 @@
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 
 function RegionLandmarks() {
+    const [regions, setRegions] = useState((
+        <option>
+            No Region
+        </option>
+    ));
+
     useEffect(() => {
         fetch("http://localhost:3000/landmark/regions").then(response => {
             if (response.status === 200) {
@@ -8,9 +14,11 @@ function RegionLandmarks() {
             }
 
         }).then(data => {
-            for (const i of data) {
-                alert(i.region);
-            }
+            setRegions(
+                <option>
+                    {data[0].region}
+                </option>
+            );
 
         }).catch(error => {
             console.log(error);
@@ -19,7 +27,9 @@ function RegionLandmarks() {
 
     return (
         <Fragment>
-            TEST
+            <select>
+                {regions}
+            </select>
         </Fragment>
     )
 }
