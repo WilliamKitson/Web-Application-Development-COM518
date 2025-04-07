@@ -33,6 +33,7 @@ function RegionLandmarks() {
                     {regions}
                 </select>
             </label>
+            <br/>
         </Fragment>
     )
 }
