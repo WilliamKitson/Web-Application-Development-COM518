@@ -26,6 +26,7 @@ function LoginPage() {
                 <button onClick={logout}>
                     Logout
                 </button>
+                <br/>
             </Fragment>
         )
     }
@@ -45,6 +46,7 @@ function LoginPage() {
             <button onClick={login}>
                 Login
             </button>
+            <br/>
         </Fragment>
     )
 
