@@ -36,12 +36,10 @@ authenticationRouter.post("/register", (req, res) => {
         return;
     }
 
-    /*
     if (!password) {
         res.status(400).json({ error: "no password supplied" });
         return;
     }
-     */
 
     try {
         const stmt = databaseModule.prepare(
