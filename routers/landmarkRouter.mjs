@@ -1,10 +1,35 @@
 import express from 'express';
+import Database from "better-sqlite3";
+import expressSession from 'express-session';
+import betterSqlite3Session from 'express-session-better-sqlite3';
 import databaseModule from "../databaseModule.mjs";
 
 const landmarkRouter = express.Router();
 landmarkRouter.use(express.json());
 
+const sessionDatabase = new Database('session.db');
+const sqliteStore = betterSqlite3Session(expressSession, sessionDatabase);
+
+landmarkRouter.use(expressSession({
+    store: new sqliteStore(),
+    secret: 'BinnieAndClyde',
+    resave: true,
+    saveUninitialized: false,
+    rolling: true,
+    unset: 'destroy',
+    proxy: true,
+    cookie: {
+        maxAge: 600000,
+        httpOnly: false
+    }
+}));
+
 landmarkRouter.get("/regions", (req, res) => {
+    if (req.session.username == null) {
+        res.status(401).json({ error: "you are not logged in." });
+        return;
+    }
+
     try {
         const stmt = databaseModule.prepare(
             "SELECT DISTINCT region " +
