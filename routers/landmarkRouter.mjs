@@ -1,5 +1,6 @@
 import express from 'express';
 import Database from "better-sqlite3";
+import xss from 'xss';
 import expressSession from 'express-session';
 import betterSqlite3Session from 'express-session-better-sqlite3';
 import databaseModule from "../databaseModule.mjs";
@@ -36,7 +37,13 @@ landmarkRouter.get("/regions", (req, res) => {
             "FROM pointsofinterest"
         );
 
-        res.json(stmt.all());
+        const info = stmt.all()
+
+        for (const i in info) {
+            info[i].region = xss(info[i].region);
+        }
+
+        res.json(info);
 
     } catch(error) {
         res.status(500).json({ error: error });
