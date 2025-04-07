@@ -4,19 +4,18 @@ function LoginPage() {
     const [username, setUsername] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:3000/authentication/user")
-            .then(response => {
-                if(response.status === 200){
-                    return response.json();
-                }
-                throw new Error("Unable to login");
-            })
-            .then(data => {
-                setUsername(data.username);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        fetch("http://localhost:3000/authentication/user").then(response => {
+            if(response.status === 200){
+                return response.json();
+            }
+
+        }).then(data => {
+            setUsername(data.username);
+
+        }).catch(error => {
+            console.log(error);
+
+        })
     }, []);
 
     if (username) {
