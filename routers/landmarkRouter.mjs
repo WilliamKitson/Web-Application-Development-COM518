@@ -63,14 +63,17 @@ landmarkRouter.get("/:region", (req, res) => {
             "WHERE region=?"
         );
 
-        const info = stmt.all(req.params.region);
+        const info = stmt.all(xss(req.params.region));
+
+        for (const i in info) {
+            info[i].region = xss(info[i].region);
+        }
 
         if (!info.length) {
             res.status(404).json({ error: "no points of interest associated with this region." });
         }
 
-        const results = stmt.all(req.params.region);
-        res.json(results);
+        res.json(info);
 
     } catch(error) {
         res.status(500).json({ error: error });
