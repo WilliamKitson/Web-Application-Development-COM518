@@ -59,7 +59,7 @@ authenticationRouter.post("/register", (req, res) => {
     }
 });
 
-authenticationRouter.post("/login", (req, res) => {
+authenticationRouter.post("/login", async (req, res) => {
     const {
         username,
         password
@@ -79,13 +79,13 @@ authenticationRouter.post("/login", (req, res) => {
         const stmt = databaseModule.prepare(
             "SELECT * " +
             "FROM poi_users " +
-            "WHERE username=? " +
-            "AND password=? "
+            "WHERE username=? "
         );
 
-        const info = stmt.all(username, password);
+        const info = stmt.all(username);
+        const match = await bcrypt.compare(password, info[0].password);
 
-        if (info.length) {
+        if (match) {
             req.session.username = req.body.username;
             res.json({username: req.session.username});
 
