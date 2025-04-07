@@ -138,13 +138,13 @@ landmarkRouter.post("/create", (req, res) => {
         );
 
         res.json(stmt.run(
-            name,
-            type,
-            country,
-            region,
-            lat,
-            lon,
-            description
+            xss(name),
+            xss(type),
+            xss(country),
+            xss(region),
+            xss(lat),
+            xss(lon),
+            xss(description)
         ));
 
     } catch(error) {
