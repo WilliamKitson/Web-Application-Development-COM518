@@ -31,12 +31,12 @@ authenticationRouter.post("/register", (req, res) => {
         password
     } = req.body;
 
-    /*
-        if (!username) {
+    if (!username) {
         res.status(400).json({ error: "no username supplied" });
         return;
     }
 
+    /*
     if (!password) {
         res.status(400).json({ error: "no password supplied" });
         return;
