@@ -2,12 +2,12 @@ import React, {Fragment, useEffect, useRef} from "react";
 import 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-function MapScreen() {
+function MapScreen(props) {
     const mapRef = useRef(null);
 
     useEffect(() => {
         initialiseLeaflet()
-        loadLandmarks("Southampton")
+        loadLandmarks(props.region)
     })
 
     return (
