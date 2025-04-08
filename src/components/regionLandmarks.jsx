@@ -82,7 +82,7 @@ function RegionLandmarks() {
                 return response.json();
             }
 
-            throw Error(response.statusText);
+            throw new Error(response.statusText);
 
         }).then(data => {
             let options = []
@@ -103,7 +103,7 @@ function RegionLandmarks() {
             setRegions(options);
 
         }).catch(error => {
-            alert(error)
+            console.log(error)
         })
     }
 
@@ -113,7 +113,7 @@ function RegionLandmarks() {
                 return response.json();
             }
 
-            throw Error(response.statusText);
+            throw new Error(response.statusText);
 
         }).then(data => {
             let temp = []
@@ -148,7 +148,7 @@ function RegionLandmarks() {
             setLandmarks(temp);
 
         }).catch(error => {
-            alert(error);
+            console.log(error);
         })
     }
 
