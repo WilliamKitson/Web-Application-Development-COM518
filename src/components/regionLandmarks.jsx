@@ -1,36 +1,39 @@
 import React, {Fragment, useEffect, useState} from "react";
 
-function RegionLandmarks() {
-    const [regions, setRegions] = useState((
-        <option>
-            No Region
-        </option>
-    ));
+const defaultRegions = (
+    <option>
+        No Region
+    </option>
+)
 
-    const [landmarks, setLandmarks] = useState((
-        <tr>
-            <td>
-                None
-            </td>
-            <td>
-                None
-            </td>
-            <td>
-                None
-            </td>
-            <td>
-                Lat: None, Lon: None
-            </td>
-            <td>
-                None
-            </td>
-            <td>
-                <button>
-                    0
-                </button>
-            </td>
-        </tr>
-    ))
+const defaultLandmarks = (
+    <tr>
+        <td>
+            None
+        </td>
+        <td>
+            None
+        </td>
+        <td>
+            None
+        </td>
+        <td>
+            Lat: None, Lon: None
+        </td>
+        <td>
+            None
+        </td>
+        <td>
+            <button>
+                0
+            </button>
+        </td>
+    </tr>
+)
+
+function RegionLandmarks() {
+    const [regions, setRegions] = useState(defaultRegions);
+    const [landmarks, setLandmarks] = useState(defaultLandmarks)
 
     useEffect(() => {
         loadRegions()
@@ -103,11 +106,7 @@ function RegionLandmarks() {
             setRegions(options);
 
         }).catch(error => {
-            setRegions((
-                <option>
-                    No Region
-                </option>
-            ))
+            setRegions(defaultRegions)
         })
     }
 
@@ -152,30 +151,7 @@ function RegionLandmarks() {
             setLandmarks(temp);
 
         }).catch(error => {
-            setLandmarks((
-                <tr>
-                    <td>
-                        None
-                    </td>
-                    <td>
-                        None
-                    </td>
-                    <td>
-                        None
-                    </td>
-                    <td>
-                        Lat: None, Lon: None
-                    </td>
-                    <td>
-                        None
-                    </td>
-                    <td>
-                        <button>
-                            0
-                        </button>
-                    </td>
-                </tr>
-            ))
+            setLandmarks(defaultLandmarks)
         })
     }
 
