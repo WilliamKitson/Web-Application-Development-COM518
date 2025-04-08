@@ -1,4 +1,5 @@
 import React, {Fragment, useState, useEffect} from "react";
+import MapScreen from "./mapScreen";
 import RegionLandmarks from "./regionLandmarks";
 import AddLandmark from "./addLandmark";
 
@@ -29,7 +30,8 @@ function LoginPage() {
                     Logout
                 </button>
                 <br/>
-                <RegionLandmarks />
+                <MapScreen/>
+                <RegionLandmarks/>
                 <AddLandmark/>
                 <br/>
             </Fragment>
