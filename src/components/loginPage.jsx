@@ -2,7 +2,6 @@ import React, {Fragment, useState, useEffect} from "react";
 import MapScreen from "./mapScreen";
 import RegionLandmarks from "./regionLandmarks";
 import AddLandmark from "./addLandmark";
-import regionLandmarks from "./regionLandmarks";
 
 function LoginPage() {
     const [username, setUsername] = useState("");
