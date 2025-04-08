@@ -34,6 +34,27 @@ function MapScreen() {
             const marker = L.marker(event.latlng).addTo(map);
             marker.bindPopup(`${text} (${event.latlng.lat}, ${event.latlng.lng})`);
         })
+
+        fetch(`http://localhost:3000/landmark/Southampton`).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            }
+
+            throw new Error(response.statusText);
+
+        }).then(data => {
+            data.forEach(function(each){
+                const marker = L.marker([
+                    each.lat,
+                    each.lon
+                ]).addTo(map);
+
+                marker.bindPopup(`${each.name} ${each.description}`);
+            })
+
+        }).catch(error => {
+            console.log(error);
+        })
     }
 }
 
