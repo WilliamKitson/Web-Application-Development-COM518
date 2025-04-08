@@ -35,13 +35,17 @@ function RegionLandmarks() {
         <Fragment>
             <label>
                 Region
-                <select>
+                <select id="region" onChange={searchRegion}>
                     {regions}
                 </select>
             </label>
             <br/>
         </Fragment>
     )
+
+    function searchRegion() {
+        alert(`search ${document.getElementById("region").value}`);
+    }
 }
 
 export default RegionLandmarks;
