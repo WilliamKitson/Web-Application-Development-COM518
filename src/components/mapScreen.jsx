@@ -33,9 +33,7 @@ function MapScreen(props) {
         );
 
         mapRef.current.on("click", function (event) {
-            const text = prompt("Who lives in a house like this?");
-            const marker = L.marker(event.latlng).addTo(mapRef.current);
-            marker.bindPopup(`${text} (${event.latlng.lat}, ${event.latlng.lng})`);
+            writeLandmark(event)
         })
     }
 
@@ -83,6 +81,12 @@ function MapScreen(props) {
             [latitude, longitude],
             14
         );
+    }
+
+    function writeLandmark(event) {
+        const text = prompt("Who lives in a house like this?");
+        const marker = L.marker(event.latlng).addTo(mapRef.current);
+        marker.bindPopup(`${text} (${event.latlng.lat}, ${event.latlng.lng})`);
     }
 }
 
