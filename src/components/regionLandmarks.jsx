@@ -14,11 +14,17 @@ function RegionLandmarks() {
             }
 
         }).then(data => {
-            setRegions(
-                <option>
-                    {data[0].region}
-                </option>
-            );
+            let options = []
+
+            data.forEach(function(each){
+                options.push(
+                    <option>
+                        {each.region}
+                    </option>
+                )
+            })
+
+            setRegions(options);
 
         }).catch(error => {
             console.log(error);
