@@ -7,8 +7,6 @@ function RegionLandmarks() {
         </option>
     ));
 
-    loadRegions()
-
     const [landmarks, setLandmarks] = useState((
         <tr>
             <td>
@@ -35,6 +33,74 @@ function RegionLandmarks() {
     ))
 
     useEffect(() => {
+        loadRegions()
+    })
+
+    return (
+        <Fragment>
+            <label>
+                Region
+                <select id="region" onChange={loadLandmarks}>
+                    {regions}
+                </select>
+            </label>
+            <br/>
+            <table>
+                <thead>
+                <tr>
+                    <td>
+                        Name
+                    </td>
+                    <td>
+                        Type
+                    </td>
+                    <td>
+                        Country
+                    </td>
+                    <td>
+                        Coordinates
+                    </td>
+                    <td>
+                        Description
+                    </td>
+                    <td>
+                        Recommendations
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                    {landmarks}
+                </tbody>
+            </table>
+            <br/>
+        </Fragment>
+    )
+
+    function loadRegions() {
+        fetch("http://localhost:3000/landmark/regions").then(response => {
+            if (response.status === 200) {
+                return response.json();
+            }
+
+        }).then(data => {
+            let options = []
+
+            data.forEach(function(each){
+                options.push(
+                    <option>
+                        {each.region}
+                    </option>
+                )
+            })
+
+            setRegions(options);
+
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    function loadLandmarks() {
         fetch(`http://localhost:3000/landmark/${document.getElementById("region").value}`).then(response => {
             if (response.status === 200) {
                 return response.json();
@@ -74,72 +140,6 @@ function RegionLandmarks() {
 
         }).catch(error => {
             console.log(error);
-        })
-    })
-
-    return (
-        <Fragment>
-            <label>
-                Region
-                <select id="region" onChange={searchRegion}>
-                    {regions}
-                </select>
-            </label>
-            <br/>
-            <table>
-                <thead>
-                <tr>
-                    <td>
-                        Name
-                    </td>
-                    <td>
-                        Type
-                    </td>
-                    <td>
-                        Country
-                    </td>
-                    <td>
-                        Coordinates
-                    </td>
-                    <td>
-                        Description
-                    </td>
-                    <td>
-                        Recommendations
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                    {landmarks}
-                </tbody>
-            </table>
-            <br/>
-        </Fragment>
-    )
-
-    function loadRegions() {
-        useEffect(() => {
-            fetch("http://localhost:3000/landmark/regions").then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-
-            }).then(data => {
-                let options = []
-
-                data.forEach(function(each){
-                    options.push(
-                        <option>
-                            {each.region}
-                        </option>
-                    )
-                })
-
-                setRegions(options);
-
-            }).catch(error => {
-                console.log(error);
-            })
         })
     }
 
