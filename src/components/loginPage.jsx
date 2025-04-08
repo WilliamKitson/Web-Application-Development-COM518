@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect} from "react";
 import RegionLandmarks from "./regionLandmarks";
-import AddPOI from "./addPOI";
+import AddLandmark from "./addLandmark";
 
 function LoginPage() {
     const [username, setUsername] = useState("");
@@ -30,7 +30,7 @@ function LoginPage() {
                 </button>
                 <br/>
                 <RegionLandmarks />
-                <AddPOI/>
+                <AddLandmark/>
                 <br/>
             </Fragment>
         )

@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 
-function AddPOI() {
+function AddLandmark() {
     return (
         <Fragment>
             <label>
@@ -38,32 +38,29 @@ function AddPOI() {
                 <input type={"text"} id={"description"} />
             </label>
             <br/>
-            <button onClick={postPOI}>
+            <button onClick={writeLandmark}>
                 Save
             </button>
         </Fragment>
     )
 
-    async function postPOI() {
-        try {
-            await fetch("/landmark/create", {
-                method: "POST",
-                headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify({
-                    name: document.getElementById("name").value,
-                    type: document.getElementById("type").value,
-                    country: document.getElementById("country").value,
-                    region: document.getElementById("region").value,
-                    longitude: document.getElementById("longitude").value,
-                    latitude: document.getElementById("latitude").value,
-                    description: document.getElementById("description").value
-                })
-            });
-
-        } catch (error) {
-            alert(error);
-        }
+    function writeLandmark() {
+        fetch("/landmark/create", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                name: document.getElementById("name").value,
+                type: document.getElementById("type").value,
+                country: document.getElementById("country").value,
+                region: document.getElementById("region").value,
+                longitude: document.getElementById("longitude").value,
+                latitude: document.getElementById("latitude").value,
+                description: document.getElementById("description").value
+            })
+        }).catch(error => {
+            console.log(error);
+        })
     }
 }
 
-export default AddPOI
+export default AddLandmark
