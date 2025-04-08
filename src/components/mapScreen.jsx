@@ -57,6 +57,22 @@ function MapScreen() {
                 marker.bindPopup(`${each.name} ${each.description}`);
             })
 
+            let xpos = 0.0;
+            let ypos = 0.0;
+
+            data.forEach(function(each){
+                xpos += each.lat;
+                ypos += each.lon;
+            })
+
+            xpos /= data.length;
+            ypos /= data.length;
+
+            mapRef.current.setView(
+                [xpos, ypos],
+                14
+            );
+
         }).catch(error => {
             console.log(error);
         })
