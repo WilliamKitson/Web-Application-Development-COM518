@@ -40,11 +40,64 @@ function RegionLandmarks() {
                 </select>
             </label>
             <br/>
+            <table>
+                <thead>
+                <tr>
+                    <td>
+                        Name
+                    </td>
+                    <td>
+                        Type
+                    </td>
+                    <td>
+                        Country
+                    </td>
+                    <td>
+                        Coordinates
+                    </td>
+                    <td>
+                        Description
+                    </td>
+                    <td>
+                        Recommendations
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            TEMP
+                        </td>
+                        <td>
+                            TEMP
+                        </td>
+                        <td>
+                            TEMP
+                        </td>
+                        <td>
+                            Lat: TEMP, Lon: TEMP
+                        </td>
+                        <td>
+                            TEMP
+                        </td>
+                        <td>
+                            <button onClick={recommend}>
+                                TEMP
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
         </Fragment>
     )
 
     function searchRegion() {
         alert(`search ${document.getElementById("region").value}`);
+    }
+
+    function recommend() {
+        alert("recommend");
     }
 }
 
