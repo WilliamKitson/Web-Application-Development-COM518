@@ -84,6 +84,11 @@ function RegionLandmarks() {
 
         }).then(data => {
             let options = []
+            options.push((
+                <option>
+                    No Region
+                </option>
+            ))
 
             data.forEach(function(each){
                 options.push(
