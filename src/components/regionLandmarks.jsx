@@ -159,6 +159,9 @@ function RegionLandmarks() {
         fetch(`/landmark/recommend/${id}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"}
+        }).then(data => {
+            loadLandmarks();
+
         }).catch(error => {
             console.log(error);
         })
