@@ -143,10 +143,6 @@ function RegionLandmarks() {
         })
     }
 
-    function searchRegion() {
-        alert(`search ${document.getElementById("region").value}`);
-    }
-
     function recommend() {
         alert("recommend");
     }
