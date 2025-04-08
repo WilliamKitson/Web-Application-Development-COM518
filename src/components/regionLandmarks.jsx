@@ -165,7 +165,6 @@ function RegionLandmarks() {
         }).catch(error => {
             console.log(error);
         })
-
     }
 }
 
