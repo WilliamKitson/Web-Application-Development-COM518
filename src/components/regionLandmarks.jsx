@@ -25,8 +25,8 @@ function RegionLandmarks() {
                 None
             </td>
             <td>
-                <button onClick={recommend}>
-                    None
+                <button>
+                    0
                 </button>
             </td>
         </tr>
@@ -103,7 +103,11 @@ function RegionLandmarks() {
             setRegions(options);
 
         }).catch(error => {
-            console.log(error)
+            setRegions((
+                <option>
+                    No Region
+                </option>
+            ))
         })
     }
 
@@ -137,7 +141,7 @@ function RegionLandmarks() {
                             {each.description}
                         </td>
                         <td>
-                            <button onClick={recommend}>
+                            <button onClick={recommend(each.id)}>
                                 {each.recommendations}
                             </button>
                         </td>
@@ -148,12 +152,44 @@ function RegionLandmarks() {
             setLandmarks(temp);
 
         }).catch(error => {
-            console.log(error);
+            setLandmarks((
+                <tr>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        Lat: None, Lon: None
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        <button>
+                            0
+                        </button>
+                    </td>
+                </tr>
+            ))
         })
     }
 
-    function recommend() {
-        alert("recommend");
+    function recommend(id) {
+        fetch(`http://localhost:3000/landmark/recommend/${id}`).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            }
+
+            throw new Error(response.statusText);
+
+        }).catch(error => {
+            console.log(error);
+        })
     }
 }
 
