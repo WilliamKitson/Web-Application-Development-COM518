@@ -49,22 +49,7 @@ function MapScreen() {
 
         }).then(data => {
             setMarkers(data);
-
-            let xpos = 0.0;
-            let ypos = 0.0;
-
-            data.forEach(function(each){
-                xpos += each.lat;
-                ypos += each.lon;
-            })
-
-            xpos /= data.length;
-            ypos /= data.length;
-
-            mapRef.current.setView(
-                [xpos, ypos],
-                14
-            );
+            setCamera(data);
 
         }).catch(error => {
             console.log(error);
@@ -80,6 +65,24 @@ function MapScreen() {
 
             marker.bindPopup(`${each.name} ${each.description}`);
         })
+    }
+
+    function setCamera(data) {
+        let latitude = 0.0;
+        let longitude = 0.0;
+
+        data.forEach(function(each){
+            latitude += each.lat;
+            longitude += each.lon;
+        })
+
+        latitude /= data.length;
+        longitude /= data.length;
+
+        mapRef.current.setView(
+            [latitude, longitude],
+            14
+        );
     }
 }
 
