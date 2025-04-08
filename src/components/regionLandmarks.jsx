@@ -88,22 +88,22 @@ function RegionLandmarks() {
             throw new Error(response.statusText);
 
         }).then(data => {
-            let options = []
-            options.push((
+            let formattedData = []
+            formattedData.push((
                 <option>
                     No Region
                 </option>
             ))
 
             data.forEach(function(each){
-                options.push(
+                formattedData.push(
                     <option>
                         {each.region}
                     </option>
                 )
             })
 
-            setRegions(options);
+            setRegions(formattedData);
 
         }).catch(error => {
             setRegions(defaultRegions)
@@ -119,10 +119,10 @@ function RegionLandmarks() {
             throw new Error(response.statusText);
 
         }).then(data => {
-            let temp = []
+            let formattedData = []
 
             data.forEach(function(each){
-                temp.push(
+                formattedData.push(
                     <tr>
                         <td>
                             {each.name}
@@ -148,7 +148,7 @@ function RegionLandmarks() {
                 )
             })
 
-            setLandmarks(temp);
+            setLandmarks(formattedData);
 
         }).catch(error => {
             setLandmarks(defaultLandmarks)
