@@ -140,7 +140,7 @@ function RegionLandmarks() {
                             {each.description}
                         </td>
                         <td>
-                            <button onClick={recommend(each.id)}>
+                            <button onClick={() => recommend(each.id)}>
                                 {each.recommendations}
                             </button>
                         </td>
@@ -156,16 +156,18 @@ function RegionLandmarks() {
     }
 
     function recommend(id) {
+        alert(`recommend ${id}`);
+
+        /*
         fetch(`http://localhost:3000/landmark/recommend/${id}`).then(response => {
             if (response.status === 200) {
                 return response.json();
             }
 
-            throw new Error(response.statusText);
-
         }).catch(error => {
             console.log(error);
         })
+         */
     }
 }
 
