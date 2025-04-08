@@ -80,7 +80,7 @@ function RegionLandmarks() {
     )
 
     function loadRegions() {
-        fetch("http://localhost:3000/landmark/regions").then(response => {
+        fetch("/landmark/regions").then(response => {
             if (response.status === 200) {
                 return response.json();
             }
@@ -111,7 +111,7 @@ function RegionLandmarks() {
     }
 
     function loadLandmarks() {
-        fetch(`http://localhost:3000/landmark/${document.getElementById("region").value}`).then(response => {
+        fetch(`/landmark/${document.getElementById("region").value}`).then(response => {
             if (response.status === 200) {
                 return response.json();
             }
