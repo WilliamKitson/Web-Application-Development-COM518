@@ -48,14 +48,7 @@ function MapScreen() {
             throw new Error(response.statusText);
 
         }).then(data => {
-            data.forEach(function(each){
-                const marker = L.marker([
-                    each.lat,
-                    each.lon
-                ]).addTo(mapRef.current);
-
-                marker.bindPopup(`${each.name} ${each.description}`);
-            })
+            setMarkers(data);
 
             let xpos = 0.0;
             let ypos = 0.0;
@@ -75,6 +68,17 @@ function MapScreen() {
 
         }).catch(error => {
             console.log(error);
+        })
+    }
+
+    function setMarkers(data) {
+        data.forEach(function(each){
+            const marker = L.marker([
+                each.lat,
+                each.lon
+            ]).addTo(mapRef.current);
+
+            marker.bindPopup(`${each.name} ${each.description}`);
         })
     }
 }
