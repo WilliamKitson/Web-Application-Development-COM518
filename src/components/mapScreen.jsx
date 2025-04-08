@@ -7,7 +7,7 @@ function MapScreen() {
 
     useEffect(() => {
         initialiseLeaflet()
-        loadLandmarks()
+        loadLandmarks("Southampton")
     })
 
     return (
@@ -39,8 +39,8 @@ function MapScreen() {
         })
     }
 
-    function loadLandmarks() {
-        fetch(`http://localhost:3000/landmark/Southampton`).then(response => {
+    function loadLandmarks(region) {
+        fetch(`http://localhost:3000/landmark/${region}`).then(response => {
             if (response.status === 200) {
                 return response.json();
             }
