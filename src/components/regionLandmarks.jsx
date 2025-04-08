@@ -156,18 +156,13 @@ function RegionLandmarks() {
     }
 
     function recommend(id) {
-        alert(`recommend ${id}`);
-
-        /*
-        fetch(`http://localhost:3000/landmark/recommend/${id}`).then(response => {
-            if (response.status === 200) {
-                return response.json();
-            }
-
+        fetch(`/landmark/recommend/${id}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"}
         }).catch(error => {
             console.log(error);
         })
-         */
+
     }
 }
 
