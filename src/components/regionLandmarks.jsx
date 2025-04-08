@@ -82,6 +82,8 @@ function RegionLandmarks() {
                 return response.json();
             }
 
+            throw Error(response.statusText);
+
         }).then(data => {
             let options = []
             options.push((
@@ -101,7 +103,7 @@ function RegionLandmarks() {
             setRegions(options);
 
         }).catch(error => {
-            console.log(error);
+            alert(error)
         })
     }
 
@@ -110,6 +112,8 @@ function RegionLandmarks() {
             if (response.status === 200) {
                 return response.json();
             }
+
+            throw Error(response.statusText);
 
         }).then(data => {
             let temp = []
@@ -144,7 +148,7 @@ function RegionLandmarks() {
             setLandmarks(temp);
 
         }).catch(error => {
-            console.log(error);
+            alert(error);
         })
     }
 
