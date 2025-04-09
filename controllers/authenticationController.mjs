@@ -71,10 +71,11 @@ export default class AuthenticationController {
             if (match) {
                 req.session.username = req.body.username;
                 res.json({username: req.session.username});
+                return;
 
-            } else {
-                res.status(401).json({error: "password incorrect"});
             }
+
+            res.status(401).json({error: "password incorrect"});
 
         } catch(error) {
             res.status(500).json({ error: error });
