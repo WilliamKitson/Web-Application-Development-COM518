@@ -1,7 +1,7 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import authenticationRouter from "./routers/authenticationRouter.mjs";
-import landmarkRouter from "./routers/landmarkRouter.mjs";
+import authenticationRouter from "./routes/authenticationRouter.mjs";
+import landmarkRouter from "./routes/landmarkRouter.mjs";
 
 const app = express();
 
