@@ -22,24 +22,4 @@ export default class AuthenticationDao {
 
         return null;
     }
-
-    async login(username, password) {
-        const stmt = databaseModule.prepare(
-            "SELECT * " +
-            "FROM poi_users " +
-            "WHERE username=? "
-        );
-
-        const info = stmt.all(username);
-
-        if (info.length) {
-            const match = await bcrypt.compare(password, info[0].password);
-
-            if (match) {
-                return info[0];
-            }
-        }
-
-        return null;
-    }
 }
