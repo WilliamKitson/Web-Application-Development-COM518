@@ -22,13 +22,17 @@ export default class AuthenticationController {
             return;
         }
 
-        try {
-            const account = this.dao.register(
-                username,
-                password
-            );
+        let hashedPassword = password;
 
-            res.json(account);
+        bcrypt.hash(password, 10, function(err, hash) {
+            hashedPassword = hash;
+        });
+
+        try {
+            res.json(this.dao.register(
+                username,
+                hashedPassword
+            ));
 
         } catch(error) {
             res.status(500).json({ error: error });

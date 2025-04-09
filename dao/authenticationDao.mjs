@@ -1,5 +1,4 @@
 import databaseModule from "../modules/databaseModule.mjs";
-import bcrypt from "bcrypt";
 
 export default class AuthenticationDao {
     constructor(database, table) {
@@ -13,14 +12,10 @@ export default class AuthenticationDao {
             "VALUES(?,?)"
         );
 
-        bcrypt.hash(password, 10, function(err, hash) {
-            return stmt.run(
-                username,
-                hash
-            );
-        });
-
-        return null;
+        return stmt.run(
+            username,
+            password
+        );
     }
 
     login(username) {
