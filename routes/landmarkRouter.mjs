@@ -4,6 +4,7 @@ import xss from 'xss';
 import expressSession from 'express-session';
 import betterSqlite3Session from 'express-session-better-sqlite3';
 import databaseModule from "../modules/databaseModule.mjs";
+import LandmarkController from "../controllers/landmarkController.mjs";
 
 const landmarkRouter = express.Router();
 landmarkRouter.use(express.json());
@@ -25,30 +26,9 @@ landmarkRouter.use(expressSession({
     }
 }));
 
-landmarkRouter.get("/regions", (req, res) => {
-    if (req.session.username == null) {
-        res.status(401).json({ error: "you are not logged in." });
-        return;
-    }
+const landmarkController = new LandmarkController(databaseModule);
 
-    try {
-        const stmt = databaseModule.prepare(
-            "SELECT DISTINCT region " +
-            "FROM pointsofinterest"
-        );
-
-        const info = stmt.all()
-
-        for (const i in info) {
-            info[i].region = xss(info[i].region);
-        }
-
-        res.json(info);
-
-    } catch(error) {
-        res.status(500).json({ error: error });
-    }
-});
+landmarkRouter.get("/regions", landmarkController.getRegions.bind(landmarkController));
 
 landmarkRouter.get("/:region", (req, res) => {
     if (req.session.username == null) {
