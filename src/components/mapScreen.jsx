@@ -84,9 +84,21 @@ function MapScreen(props) {
     }
 
     function writeLandmark(event) {
-        const text = prompt("Who lives in a house like this?");
-        const marker = L.marker(event.latlng).addTo(mapRef.current);
-        marker.bindPopup(`${text} (${event.latlng.lat}, ${event.latlng.lng})`);
+        fetch("/landmark/create", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                name: "Custom",
+                type: "Custom",
+                country: "Custom",
+                region: "Custom",
+                longitude: event.latlng.lng,
+                latitude: event.latlng.lat,
+                description: document.getElementById("description").value
+            })
+        }).catch(error => {
+            console.log(error);
+        })
     }
 }
 
