@@ -7,6 +7,22 @@ export default class AuthenticationDao {
         this.table = table;
     }
 
+    register(username, password) {
+        const stmt = databaseModule.prepare(
+            "INSERT INTO poi_users(username, password) " +
+            "VALUES(?,?)"
+        );
+
+        bcrypt.hash(password, 10, function(err, hash) {
+            password = hash;
+        });
+
+        return stmt.run(
+            username,
+            password
+        );
+    }
+
     async login(username, password) {
         const stmt = databaseModule.prepare(
             "SELECT * " +
