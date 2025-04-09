@@ -61,7 +61,10 @@ function MapScreen(props) {
                 each.lon
             ]).addTo(mapRef.current);
 
-            marker.bindPopup(`${each.name} ${each.description}`);
+            const domDiv = document.createElement('div');
+            domDiv.innerHTML = `${each.name}<br/><input type='text' placeholder='Please leave your review'><br/><button>Submit</button>`;
+
+            marker.bindPopup(domDiv);
         })
     }
 
