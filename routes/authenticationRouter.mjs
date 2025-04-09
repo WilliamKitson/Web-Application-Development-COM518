@@ -3,7 +3,7 @@ import Database from "better-sqlite3";
 import expressSession from 'express-session';
 import betterSqlite3Session from 'express-session-better-sqlite3';
 import bcrypt from 'bcrypt';
-import databaseModule from "../databaseModule.mjs";
+import databaseModule from "../modules/databaseModule.mjs";
 import AuthenticationController from "../controllers/authenticationController.mjs";
 
 const authenticationRouter = express.Router();

@@ -3,7 +3,7 @@ import Database from "better-sqlite3";
 import xss from 'xss';
 import expressSession from 'express-session';
 import betterSqlite3Session from 'express-session-better-sqlite3';
-import databaseModule from "../databaseModule.mjs";
+import databaseModule from "../modules/databaseModule.mjs";
 
 const landmarkRouter = express.Router();
 landmarkRouter.use(express.json());

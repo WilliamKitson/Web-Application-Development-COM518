@@ -1,4 +1,4 @@
-import databaseModule from "../databaseModule.mjs";
+import databaseModule from "../modules/databaseModule.mjs";
 import bcrypt from "bcrypt";
 
 export default class AuthenticationDao {
