@@ -30,10 +30,6 @@ const authenticationController = new AuthenticationController(databaseModule);
 authenticationRouter.post("/register", authenticationController.register.bind(authenticationController));
 authenticationRouter.post("/login", authenticationController.login.bind(authenticationController));
 authenticationRouter.get('/user', authenticationController.getUser.bind(authenticationController));
-
-authenticationRouter.post('/logout', (req, res) => {
-    req.session = null;
-    res.json({loggedout: true});
-});
+authenticationRouter.post('/logout', authenticationController.logout.bind(authenticationController));
 
 export default authenticationRouter;

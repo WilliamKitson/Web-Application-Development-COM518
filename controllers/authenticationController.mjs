@@ -72,4 +72,9 @@ export default class AuthenticationController {
     getUser(req, res) {
         res.json({username: req.session.username || null} );
     }
+
+    logout(req, res) {
+        req.session = null;
+        res.json({loggedout: true});
+    }
 }
