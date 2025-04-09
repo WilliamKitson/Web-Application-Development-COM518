@@ -14,13 +14,13 @@ export default class AuthenticationDao {
         );
 
         bcrypt.hash(password, 10, function(err, hash) {
-            password = hash;
+            return stmt.run(
+                username,
+                hash
+            );
         });
 
-        return stmt.run(
-            username,
-            password
-        );
+        return null;
     }
 
     async login(username, password) {
