@@ -4,7 +4,6 @@ import expressSession from 'express-session';
 import betterSqlite3Session from 'express-session-better-sqlite3';
 import databaseModule from "../modules/databaseModule.mjs";
 import AuthenticationController from "../controllers/authenticationController.mjs";
-import bcrypt from "bcrypt";
 
 const authenticationRouter = express.Router();
 authenticationRouter.use(express.json());
