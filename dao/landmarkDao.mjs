@@ -50,4 +50,21 @@ export default class LandmarkDao {
 
         return info;
     }
+
+    createLandmark(name, type, country, region, lat, lon, description) {
+        const stmt = databaseModule.prepare(
+            "INSERT INTO pointsofinterest(name, type, country, region, lat, lon, description, recommendations) " +
+            "VALUES(?,?,?,?,?,?,?,0)"
+        );
+
+        return stmt.run(
+            xss(name),
+            xss(type),
+            xss(country),
+            xss(region),
+            xss(lat),
+            xss(lon),
+            xss(description)
+        );
+    }
 }

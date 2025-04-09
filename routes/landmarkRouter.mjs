@@ -30,78 +30,7 @@ const landmarkController = new LandmarkController(databaseModule);
 
 landmarkRouter.get("/regions", landmarkController.getRegions.bind(landmarkController));
 landmarkRouter.get("/:region", landmarkController.getLandmarks.bind(landmarkController));
-
-landmarkRouter.post("/create", (req, res) => {
-    if (req.session.username == null) {
-        res.status(401).json({ error: "you are not logged in." });
-        return;
-    }
-
-    const {
-        name,
-        type,
-        country,
-        region,
-        lon,
-        lat,
-        description
-    } = req.body;
-
-    if (!name) {
-        res.status(400).json({ error: "no name supplied" });
-        return;
-    }
-
-    if (!type) {
-        res.status(400).json({ error: "no type supplied" });
-        return;
-    }
-
-    if (!country) {
-        res.status(400).json({ error: "no country supplied" });
-        return;
-    }
-
-    if (!region) {
-        res.status(400).json({ error: "no region supplied" });
-        return;
-    }
-
-    if (lon == null) {
-        res.status(400).json({ error: "no longitude supplied" });
-        return;
-    }
-
-    if (lat == null) {
-        res.status(400).json({ error: "no latitude supplied" });
-        return;
-    }
-
-    if (!description) {
-        res.status(400).json({ error: "no description supplied" });
-        return;
-    }
-
-    try {
-        const stmt = databaseModule.prepare(
-            "INSERT INTO pointsofinterest(name, type, country, region, lat, lon, description, recommendations) " +
-            "VALUES(?,?,?,?,?,?,?,0)"
-        );
-
-        res.json(stmt.run(
-            xss(name),
-            xss(type),
-            xss(country),
-            xss(region),
-            xss(lat),
-            xss(lon),
-            xss(description)
-        ));
-
-    } catch(error) {
-        res.status(500).json({ error: error });
-    }
-});
+landmarkRouter.post("/create", landmarkController.createLandmark.bind(landmarkController));
 
 landmarkRouter.put("/recommend/:id", (req, res) =>{
     if (req.session.username == null) {

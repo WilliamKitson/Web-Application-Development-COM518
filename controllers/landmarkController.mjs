@@ -41,4 +41,71 @@ export default class LandmarkController {
             res.status(500).json({ error: error });
         }
     }
+
+    createLandmark(req, res) {
+        if (req.session.username == null) {
+            res.status(401).json({ error: "you are not logged in." });
+            return;
+        }
+
+        const {
+            name,
+            type,
+            country,
+            region,
+            lon,
+            lat,
+            description
+        } = req.body;
+
+        if (!name) {
+            res.status(400).json({ error: "no name supplied" });
+            return;
+        }
+
+        if (!type) {
+            res.status(400).json({ error: "no type supplied" });
+            return;
+        }
+
+        if (!country) {
+            res.status(400).json({ error: "no country supplied" });
+            return;
+        }
+
+        if (!region) {
+            res.status(400).json({ error: "no region supplied" });
+            return;
+        }
+
+        if (lon == null) {
+            res.status(400).json({ error: "no longitude supplied" });
+            return;
+        }
+
+        if (lat == null) {
+            res.status(400).json({ error: "no latitude supplied" });
+            return;
+        }
+
+        if (!description) {
+            res.status(400).json({ error: "no description supplied" });
+            return;
+        }
+
+        try {
+            res.json(this.dao.createLandmark(
+                name,
+                type,
+                country,
+                region,
+                lon,
+                lat,
+                description
+            ));
+
+        } catch(error) {
+            res.status(500).json({ error: error });
+        }
+    }
 }
