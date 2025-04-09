@@ -1,6 +1,4 @@
 import LandmarkDao from "../dao/landmarkDao.mjs";
-import databaseModule from "../modules/databaseModule.mjs";
-import xss from "xss";
 
 export default class LandmarkController {
     constructor(database) {
@@ -106,6 +104,27 @@ export default class LandmarkController {
 
         } catch(error) {
             res.status(500).json({ error: error });
+        }
+    }
+
+    recommendLandmark(req, res) {
+        if (req.session.username == null) {
+            res.status(401).json({ error: "you are not logged in." });
+            return;
+        }
+
+        try {
+            const recommendation = this.dao.recommendLandmark(req.params.id);
+
+            if(!recommendation) {
+                res.status(404).json({error: 'no point of interest with that ID'});
+                return;
+            }
+
+            res.json(recommendation);
+
+        } catch(error) {
+            res.status(500).json({error: error});
         }
     }
 }

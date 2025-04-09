@@ -67,4 +67,20 @@ export default class LandmarkDao {
             xss(description)
         );
     }
+
+    recommendLandmark(landmark) {
+        const stmt = databaseModule.prepare(
+            "UPDATE pointsofinterest " +
+            "SET recommendations = recommendations + 1 " +
+            "WHERE id = ?"
+        );
+
+        const info = stmt.run(xss(landmark));
+
+        if(!info.changes) {
+            return null;
+        }
+
+        return info;
+    }
 }
