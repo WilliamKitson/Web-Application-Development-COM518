@@ -4,6 +4,7 @@ import expressSession from 'express-session';
 import betterSqlite3Session from 'express-session-better-sqlite3';
 import bcrypt from 'bcrypt';
 import databaseModule from "../databaseModule.mjs";
+import AuthenticationController from "../controllers/authenticationController.mjs";
 
 const authenticationRouter = express.Router();
 authenticationRouter.use(express.json());
@@ -24,6 +25,8 @@ authenticationRouter.use(expressSession({
         httpOnly: false
     }
 }));
+
+const authenticationController = new AuthenticationController(databaseModule);
 
 authenticationRouter.post("/register", (req, res) => {
     const {
@@ -59,44 +62,7 @@ authenticationRouter.post("/register", (req, res) => {
     }
 });
 
-authenticationRouter.post("/login", async (req, res) => {
-    const {
-        username,
-        password
-    } = req.body;
-
-    if (!username) {
-        res.status(400).json({ error: "no username supplied" });
-        return;
-    }
-
-    if (!password) {
-        res.status(400).json({ error: "no password supplied" });
-        return;
-    }
-
-    try {
-        const stmt = databaseModule.prepare(
-            "SELECT * " +
-            "FROM poi_users " +
-            "WHERE username=? "
-        );
-
-        const info = stmt.all(username);
-        const match = await bcrypt.compare(password, info[0].password);
-
-        if (match) {
-            req.session.username = req.body.username;
-            res.json({username: req.session.username});
-
-        } else {
-            res.status(401).json({error: "invalid login!"});
-        }
-
-    } catch(error) {
-        res.status(500).json({ error: error });
-    }
-});
+authenticationRouter.post("/login", authenticationController.login.bind(authenticationController));
 
 authenticationRouter.get('/user', (req, res) => {
     res.json({username: req.session.username || null} );
