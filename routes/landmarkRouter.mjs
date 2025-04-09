@@ -29,41 +29,7 @@ landmarkRouter.use(expressSession({
 const landmarkController = new LandmarkController(databaseModule);
 
 landmarkRouter.get("/regions", landmarkController.getRegions.bind(landmarkController));
-
-landmarkRouter.get("/:region", (req, res) => {
-    if (req.session.username == null) {
-        res.status(401).json({ error: "you are not logged in." });
-        return;
-    }
-
-    try {
-        const stmt = databaseModule.prepare(
-            "SELECT * " +
-            "FROM pointsofinterest " +
-            "WHERE region=?"
-        );
-
-        const info = stmt.all(xss(req.params.region));
-
-        for (const i in info) {
-            info[i].id = xss(info[i].id);
-            info[i].name = xss(info[i].name);
-            info[i].type = xss(info[i].type);
-            info[i].country = xss(info[i].country);
-            info[i].region = xss(info[i].region);
-            info[i].description = xss(info[i].description);
-        }
-
-        if (!info.length) {
-            res.status(404).json({ error: "no points of interest associated with this region." });
-        }
-
-        res.json(info);
-
-    } catch(error) {
-        res.status(500).json({ error: error });
-    }
-});
+landmarkRouter.get("/:region", landmarkController.getLandmarks.bind(landmarkController));
 
 landmarkRouter.post("/create", (req, res) => {
     if (req.session.username == null) {
