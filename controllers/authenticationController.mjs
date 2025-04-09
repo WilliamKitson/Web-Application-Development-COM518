@@ -68,4 +68,8 @@ export default class AuthenticationController {
             res.status(500).json({ error: error });
         }
     }
+
+    getUser(req, res) {
+        res.json({username: req.session.username || null} );
+    }
 }
