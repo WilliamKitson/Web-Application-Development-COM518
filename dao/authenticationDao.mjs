@@ -22,4 +22,20 @@ export default class AuthenticationDao {
 
         return null;
     }
+
+    login(username) {
+        const stmt = databaseModule.prepare(
+            "SELECT * " +
+            "FROM poi_users " +
+            "WHERE username=? "
+        );
+
+        const info = stmt.all(username);
+
+        if (!info.length) {
+            return null;
+        }
+
+        return info[0];
+    }
 }

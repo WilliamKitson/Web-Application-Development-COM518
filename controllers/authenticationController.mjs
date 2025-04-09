@@ -1,5 +1,4 @@
 import AuthenticationDao from "../dao/authenticationDao.mjs";
-import databaseModule from "../modules/databaseModule.mjs";
 import bcrypt from "bcrypt";
 
 export default class AuthenticationController {
@@ -53,26 +52,19 @@ export default class AuthenticationController {
         }
 
         try {
-            const stmt = databaseModule.prepare(
-                "SELECT * " +
-                "FROM poi_users " +
-                "WHERE username=? "
-            );
+            const account = this.dao.login(req.body.username);
 
-            const info = stmt.all(username);
-
-            if (!info.length) {
+            if (!account) {
                 res.status(401).json({error: "username not found"});
                 return;
             }
 
-            const match = await bcrypt.compare(password, info[0].password);
+            const match = await bcrypt.compare(password, account.password);
 
             if (match) {
-                req.session.username = req.body.username;
+                req.session.username = account.username;
                 res.json({username: req.session.username});
                 return;
-
             }
 
             res.status(401).json({error: "password incorrect"});
