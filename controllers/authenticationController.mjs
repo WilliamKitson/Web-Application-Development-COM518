@@ -40,6 +40,16 @@ export default class AuthenticationController {
             password
         } = req.body;
 
+        if (!username) {
+            res.status(400).json({ error: "no username supplied" });
+            return;
+        }
+
+        if (!password) {
+            res.status(400).json({ error: "no password supplied" });
+            return;
+        }
+
         try {
             const account = this.dao.login(
                 username,

@@ -28,6 +28,7 @@ authenticationRouter.use(expressSession({
 const authenticationController = new AuthenticationController(databaseModule);
 
 authenticationRouter.post("/register", authenticationController.register.bind(authenticationController));
+
 authenticationRouter.post("/login", authenticationController.login.bind(authenticationController));
 
 authenticationRouter.get('/user', (req, res) => {
