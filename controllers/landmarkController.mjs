@@ -129,6 +129,28 @@ export default class LandmarkController {
     }
 
     reviewLandmark(req, res) {
-        res.json("test");
+        if (req.session.username == null) {
+            res.status(401).json({ error: "you are not logged in." });
+            return;
+        }
+
+        const {
+            review
+        } = req.body;
+
+        if (!review) {
+            res.status(400).json({ error: "no review supplied." });
+            return;
+        }
+
+        try {
+            res.json(this.dao.reviewLandmark(
+                req.params.id,
+                review
+            ));
+
+        } catch(error) {
+            res.status(500).json({ error: error });
+        }
     }
 }

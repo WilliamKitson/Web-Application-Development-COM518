@@ -83,4 +83,16 @@ export default class LandmarkDao {
 
         return info;
     }
+
+    reviewLandmark(landmark, review) {
+        const stmt = databaseModule.prepare(
+            "INSERT INTO poi_reviews(poi_id, review) " +
+            "VALUES(?,?)"
+        );
+
+        return stmt.run(
+            xss(landmark),
+            xss(review)
+        );
+    }
 }
