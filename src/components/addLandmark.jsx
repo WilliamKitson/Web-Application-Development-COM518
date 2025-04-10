@@ -5,37 +5,37 @@ function AddLandmark() {
         <Fragment>
             <label>
                 Name
-                <input type={"text"} id={"name"} />
+                <input type={"text"} id={"landmarkName"} />
             </label>
             <br/>
             <label>
                 Type
-                <input type={"text"} id={"type"} />
+                <input type={"text"} id={"landmarkType"} />
             </label>
             <br/>
             <label>
                 Country
-                <input type={"text"} id={"country"} />
+                <input type={"text"} id={"landmarkCountry"} />
             </label>
             <br/>
             <label>
                 Region
-                <input type={"text"} id={"region"} />
+                <input type={"text"} id={"landmarkRegion"} />
             </label>
             <br/>
             <label>
                 Longitude
-                <input type={"number"} id={"longitude"} />
+                <input type={"number"} id={"landmarkLongitude"} />
             </label>
             <br/>
             <label>
                 Latitude
-                <input type={"number"} id={"latitude"} />
+                <input type={"number"} id={"landmarkLatitude"} />
             </label>
             <br/>
             <label>
                 Description
-                <input type={"text"} id={"description"} />
+                <input type={"text"} id={"landmarkDescription"} />
             </label>
             <br/>
             <button onClick={writeLandmark}>
@@ -49,13 +49,13 @@ function AddLandmark() {
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({
-                "name": "will",
-                "type": "will",
-                "country": "will",
-                "region": "will",
-                "lon": 0.0,
-                "lat": 0.0,
-                "description": "will"
+                "name": document.getElementById("landmarkName").value,
+                "type": document.getElementById("landmarkType").value,
+                "country": document.getElementById("landmarkCountry").value,
+                "region": document.getElementById("landmarkRegion").value,
+                "lon": document.getElementById("landmarkLongitude").value,
+                "lat": document.getElementById("landmarkLatitude").value,
+                "description": document.getElementById("landmarkDescription").value
             })
         }).catch(error => {
             console.log(error);
