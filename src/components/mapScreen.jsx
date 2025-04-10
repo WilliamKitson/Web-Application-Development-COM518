@@ -142,6 +142,12 @@ function MapScreen(props) {
         domDivDescription.id = `addDescription_${event.id}`;
         domDivDescription.placeholder = "description";
 
+        const domDivSubmit = document.createElement("button");
+        domDivSubmit.innerHTML = "Save";
+        domDivSubmit.onclick = function () {
+            alert("test");
+        }
+
         const domDiv = document.createElement('div');
         domDiv.innerHTML = `Please define this landmark at lat: ${event.latlng.lat}, lon: ${event.latlng.lng}`;
         domDiv.appendChild(document.createElement("br"));
@@ -154,6 +160,8 @@ function MapScreen(props) {
         domDiv.appendChild(domDivRegion);
         domDiv.appendChild(document.createElement("br"));
         domDiv.appendChild(domDivDescription);
+        domDiv.appendChild(document.createElement("br"));
+        domDiv.appendChild(domDivSubmit);
 
         marker.bindPopup(domDiv);
     }
