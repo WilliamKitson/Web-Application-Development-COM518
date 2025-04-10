@@ -122,8 +122,38 @@ function MapScreen(props) {
             event.latlng.lng
         ]).addTo(mapRef.current);
 
+        const domDivName = document.createElement("input");
+        domDivName.id = `addName_${event.id}`;
+        domDivName.placeholder = "name";
+
+        const domDivType = document.createElement("input");
+        domDivType.id = `addType_${event.id}`;
+        domDivType.placeholder = "type";
+
+        const domDivCountry = document.createElement("input");
+        domDivCountry.id = `addCountry_${event.id}`;
+        domDivCountry.placeholder = "country";
+
+        const domDivRegion = document.createElement("input");
+        domDivRegion.id = `addRegion_${event.id}`;
+        domDivRegion.placeholder = "region";
+
+        const domDivDescription = document.createElement("input");
+        domDivDescription.id = `addDescription_${event.id}`;
+        domDivDescription.placeholder = "description";
+
         const domDiv = document.createElement('div');
-        domDiv.innerHTML = "";
+        domDiv.innerHTML = `Please define this landmark at lat: ${event.latlng.lat}, lon: ${event.latlng.lng}`;
+        domDiv.appendChild(document.createElement("br"));
+        domDiv.appendChild(domDivName);
+        domDiv.appendChild(document.createElement("br"));
+        domDiv.appendChild(domDivType);
+        domDiv.appendChild(document.createElement("br"));
+        domDiv.appendChild(domDivCountry);
+        domDiv.appendChild(document.createElement("br"));
+        domDiv.appendChild(domDivRegion);
+        domDiv.appendChild(document.createElement("br"));
+        domDiv.appendChild(domDivDescription);
 
         marker.bindPopup(domDiv);
     }
