@@ -40,12 +40,6 @@ function RegionLandmarks() {
         loadRegions()
     },[])
 
-    let region = "No Region";
-
-    if (document.getElementById("region") !== null) {
-        region = document.getElementById("region").value;
-    }
-
     return (
         <Fragment>
             <label>
@@ -55,7 +49,7 @@ function RegionLandmarks() {
                 </select>
             </label>
             <br/>
-            <MapScreen region={region} />
+            <MapScreen region={getCurrentRegion()} />
             <table>
                 <thead>
                 <tr>
@@ -116,6 +110,16 @@ function RegionLandmarks() {
         }).catch(error => {
             setRegions(defaultRegions)
         })
+    }
+
+    function getCurrentRegion() {
+        const region = document.getElementById("region");
+
+        if (region !== null) {
+            return region.value;
+        }
+
+        return "No Region";
     }
 
     function loadLandmarks() {
