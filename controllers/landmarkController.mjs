@@ -127,4 +127,8 @@ export default class LandmarkController {
             res.status(500).json({error: error});
         }
     }
+
+    reviewLandmark(req, res) {
+        res.json("test");
+    }
 }

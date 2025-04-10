@@ -31,5 +31,6 @@ landmarkRouter.get("/regions", landmarkController.getRegions.bind(landmarkContro
 landmarkRouter.get("/:region", landmarkController.getLandmarks.bind(landmarkController));
 landmarkRouter.post("/create", landmarkController.createLandmark.bind(landmarkController));
 landmarkRouter.put("/recommend/:id", landmarkController.recommendLandmark.bind(landmarkController));
+landmarkRouter.post("/review/:id", landmarkController.reviewLandmark.bind(landmarkController));
 
 export default landmarkRouter;
