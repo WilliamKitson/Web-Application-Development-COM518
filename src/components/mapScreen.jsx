@@ -79,6 +79,7 @@ function MapScreen(props) {
             }
 
             const domDiv = document.createElement("div");
+            domDiv.innerHTML = each.name;
             domDiv.appendChild(domDivReview);
             domDiv.appendChild(domDivSubmit);
             marker.bindPopup(domDiv);
