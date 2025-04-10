@@ -147,7 +147,7 @@ function MapScreen(props) {
         domDivSubmit.onclick = function () {
             writeLandmark(
                 event.id,
-                event.latlng.lon,
+                event.latlng.lng,
                 event.latlng.lat
             );
         }
