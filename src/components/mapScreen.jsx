@@ -66,11 +66,22 @@ function MapScreen(props) {
                 each.lon
             ]).addTo(mapRef.current);
 
-            const domDiv = document.createElement('div');
-            domDiv.innerHTML = `${each.name}<br/><input type='text' placeholder='Please leave your review'><br/><button>Submit</button>`;
+            const domDiv = document.createElement("div");
 
+            const domDivSubmit = document.createElement("button");
+            domDivSubmit.innerHTML = "Submit";
+            domDivSubmit.setAttribute("id", each.id);
+            domDivSubmit.onclick = function () {
+                writeReview(domDivSubmit.id);
+            }
+
+            domDiv.appendChild(domDivSubmit);
             marker.bindPopup(domDiv);
         })
+    }
+
+    function writeReview(id) {
+        alert(`write review ${id}`);
     }
 
     function setCamera(data) {
