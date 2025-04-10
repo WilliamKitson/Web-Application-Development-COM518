@@ -81,7 +81,15 @@ function MapScreen(props) {
     }
 
     function writeReview(id) {
-        alert(`write review ${id}`);
+        fetch(`/landmark/review/${id}`, {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                "review": "this is a test review"
+            })
+        }).catch(error => {
+            console.log(error);
+        })
     }
 
     function setCamera(data) {
