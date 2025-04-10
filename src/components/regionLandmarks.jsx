@@ -37,7 +37,9 @@ function RegionLandmarks() {
 
     useEffect(() => {
         loadRegions()
-    })
+    },[])
+
+    alert("test");
 
     return (
         <Fragment>
