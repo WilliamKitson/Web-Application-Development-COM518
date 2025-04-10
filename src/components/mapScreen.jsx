@@ -20,6 +20,11 @@ function MapScreen(props) {
     )
 
     function initialiseLeaflet() {
+        if (mapRef.current && mapRef.current.remove) {
+            mapRef.current.off();
+            mapRef.current.remove();
+        }
+
         mapRef.current = L.map ("map1");
         const attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
 

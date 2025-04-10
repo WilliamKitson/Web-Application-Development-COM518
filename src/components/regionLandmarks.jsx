@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
+import MapScreen from "./mapScreen";
 
 const defaultRegions = (
     <option>
@@ -39,10 +40,10 @@ function RegionLandmarks() {
         loadRegions()
     },[])
 
-    alert("test");
-
     return (
         <Fragment>
+            <MapScreen region={"Southampton"} />
+            <br/>
             <label>
                 Region
                 <select id="region" onChange={loadLandmarks}>

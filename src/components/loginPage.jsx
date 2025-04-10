@@ -1,5 +1,4 @@
 import React, {Fragment, useState, useEffect} from "react";
-import MapScreen from "./mapScreen";
 import RegionLandmarks from "./regionLandmarks";
 import AddLandmark from "./addLandmark";
 
@@ -30,7 +29,6 @@ function LoginPage() {
                     Logout
                 </button>
                 <br/>
-                <MapScreen region={"Southampton"} />
                 <RegionLandmarks/>
                 <AddLandmark/>
                 <br/>
