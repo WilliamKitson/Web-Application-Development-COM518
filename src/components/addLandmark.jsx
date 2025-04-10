@@ -49,13 +49,13 @@ function AddLandmark() {
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({
-                name: document.getElementById("name").value,
-                type: document.getElementById("type").value,
-                country: document.getElementById("country").value,
-                region: document.getElementById("region").value,
-                longitude: document.getElementById("longitude").value,
-                latitude: document.getElementById("latitude").value,
-                description: document.getElementById("description").value
+                "name": "will",
+                "type": "will",
+                "country": "will",
+                "region": "will",
+                "lon": 0.0,
+                "lat": 0.0,
+                "description": "will"
             })
         }).catch(error => {
             console.log(error);
