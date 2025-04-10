@@ -90,7 +90,7 @@ function MapScreen(props) {
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({
-                "review": "this is a test review"
+                "review": document.getElementById(`review_${id}`).value
             })
         }).catch(error => {
             console.log(error);
