@@ -66,7 +66,10 @@ function MapScreen(props) {
                 each.lon
             ]).addTo(mapRef.current);
 
-            const domDiv = document.createElement("div");
+            const domDivReview = document.createElement("input");
+            domDivReview.id = `review_${each.id}`;
+            domDivReview.type = "text";
+            domDivReview.placeholder = "Please leave a review";
 
             const domDivSubmit = document.createElement("button");
             domDivSubmit.innerHTML = "Submit";
@@ -75,6 +78,8 @@ function MapScreen(props) {
                 writeReview(domDivSubmit.id);
             }
 
+            const domDiv = document.createElement("div");
+            domDiv.appendChild(domDivReview);
             domDiv.appendChild(domDivSubmit);
             marker.bindPopup(domDiv);
         })
