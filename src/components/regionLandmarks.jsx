@@ -42,8 +42,7 @@ function RegionLandmarks() {
 
     return (
         <Fragment>
-            <MapScreen region={"Southampton"} />
-            <br/>
+            <MapScreen region={document.getElementById("region").value} />
             <label>
                 Region
                 <select id="region" onChange={loadLandmarks}>

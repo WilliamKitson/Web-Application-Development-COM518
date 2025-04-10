@@ -34,7 +34,7 @@ function MapScreen(props) {
 
         mapRef.current.setView(
             [50.908,-1.4],
-            14
+            10
         );
 
         mapRef.current.on("click", function (event) {
@@ -87,7 +87,7 @@ function MapScreen(props) {
 
         mapRef.current.setView(
             [latitude, longitude],
-            14
+            10
         );
     }
 
