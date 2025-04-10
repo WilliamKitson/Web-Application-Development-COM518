@@ -40,6 +40,12 @@ function RegionLandmarks() {
         loadRegions()
     },[])
 
+    let region = "No Region";
+
+    if (document.getElementById("region") !== null) {
+        region = document.getElementById("region").value;
+    }
+
     return (
         <Fragment>
             <label>
@@ -49,7 +55,7 @@ function RegionLandmarks() {
                 </select>
             </label>
             <br/>
-            <MapScreen region={document.getElementById("region").value} />
+            <MapScreen region={region} />
             <table>
                 <thead>
                 <tr>
