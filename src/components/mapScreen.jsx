@@ -38,7 +38,7 @@ function MapScreen(props) {
         );
 
         mapRef.current.on("click", function (event) {
-            writeLandmark(event)
+            addLandmarkPopup(event)
         })
     }
 
@@ -116,7 +116,7 @@ function MapScreen(props) {
         );
     }
 
-    function writeLandmark(event) {
+    function addLandmarkPopup(event) {
         const marker = L.marker([
             event.latlng.lat,
             event.latlng.lng
@@ -145,7 +145,11 @@ function MapScreen(props) {
         const domDivSubmit = document.createElement("button");
         domDivSubmit.innerHTML = "Save";
         domDivSubmit.onclick = function () {
-            alert("test");
+            writeLandmark(
+                event.id,
+                event.latlng.lon,
+                event.latlng.lat
+            );
         }
 
         const domDiv = document.createElement('div');
@@ -164,6 +168,24 @@ function MapScreen(props) {
         domDiv.appendChild(domDivSubmit);
 
         marker.bindPopup(domDiv);
+    }
+
+    function writeLandmark(id, longitude, latitude) {
+        fetch("/landmark/create", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                "name": document.getElementById(`addName_${id}`).value,
+                "type": document.getElementById(`addType_${id}`).value,
+                "country": document.getElementById(`addCountry_${id}`).value,
+                "region": document.getElementById(`addRegion_${id}`).value,
+                "lon": longitude,
+                "lat": latitude,
+                "description": document.getElementById(`addDescription_${id}`).value
+            })
+        }).catch(error => {
+            console.log(error);
+        })
     }
 }
 
