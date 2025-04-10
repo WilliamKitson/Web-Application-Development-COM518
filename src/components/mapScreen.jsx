@@ -92,21 +92,15 @@ function MapScreen(props) {
     }
 
     function writeLandmark(event) {
-        fetch("/landmark/create", {
-            method: "POST",
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify({
-                name: "Custom",
-                type: "Custom",
-                country: "Custom",
-                region: "Custom",
-                longitude: event.latlng.lng,
-                latitude: event.latlng.lat,
-                description: document.getElementById("description").value
-            })
-        }).catch(error => {
-            console.log(error);
-        })
+        const marker = L.marker([
+            event.latlng.lat,
+            event.latlng.lng
+        ]).addTo(mapRef.current);
+
+        const domDiv = document.createElement('div');
+        domDiv.innerHTML = "";
+
+        marker.bindPopup(domDiv);
     }
 }
 
